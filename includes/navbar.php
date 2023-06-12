@@ -64,7 +64,6 @@
         	font-size: 12px;
         }
 
-
         .nav-side:hover .links
         {
         	display: inline;
