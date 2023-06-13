@@ -10,7 +10,7 @@
 
 	<style type="text/css">
 		
-		body
+		body 
 		{
 			font-family: sans-serif;
 			font-size: 14px;
@@ -92,7 +92,7 @@
 	<?php include_once('../includes/navbar.php'); ?>
 
 	<div class=" ms-5">
-    <form class="my-3">
+    <form class="my-3" action="dashboard.php" method="post">
       <h5 style=" margin:30px;">Dashboard Report</h5>
       <div style=" margin:30px;">
         <label for="form" class="date">Start date: </label>
@@ -189,5 +189,6 @@
 
 
 
+<?php include_once('../includes/footer.php'); ?>
 </body>
 </html>

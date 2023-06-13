@@ -1,7 +1,7 @@
 <?php  
 
 
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
+
 	<script type="" src="../js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
 	<title></title>
@@ -115,7 +116,7 @@
                             Inventory
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Add Purchase</a></li>
+                            <li><a class="dropdown-item" href="purchase.php">Add Purchase</a></li>
                               <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -151,12 +152,12 @@
         <div class="sidebar card py-4 mb-1 my-5">
             <ul class="nav flex-column text-white" id="nav_accordion" style="padding-top: 55px;">
                 <li class="nav-item ">
-                    <a class="nav-link  text-white" href=""> <i class="fa-brands fa-windows"></i><span class="links">Dashboard</span></a>
+                    <a class="nav-link  text-white" href="dashboard.php"> <i class="fa-brands fa-windows"></i><span class="links">Dashboard</span></a>
                 </li>
                 <li class="nav-item has-submenu my-2">
                     <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links">Inventory</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-cart-shopping"></i><span class="links"> Add purchase</span></a></li>
+                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links"> Add purchase</span></a></li>
                         <li><a class="nav-link text-white" href=""><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links">Today sales</span></a></li>
                     </ul>
                 </li>
@@ -168,10 +169,16 @@
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links">Order Items</span></a>
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS</span></a>
+                    <ul class="submenu collapse">
+                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS-order</span></a></li>
+                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">My orders</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item my-2">
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links">Order management</span></a>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href=""><i class="fa-solid fa-list"></i><span class="links">orders</span></a></li>
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-list-check"></i><span class="links">order management</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item my-2">
