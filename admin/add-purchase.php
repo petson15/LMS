@@ -7,28 +7,7 @@
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
 	
-        $(document).ready(function() {
-            // Calculate total when user clicks outside an input field
-            $('input[name="quantity"], input[name="unitprice"]').on('change', function() {
-                calculateTotal();
-            });
-
-            // Function to calculate total
-            function calculateTotal() {
-                var quantity = parseFloat($('input[name="quantity"]').val());
-                var unitPrice = parseFloat($('input[name="unitprice"]').val());
-
-                if (!isNaN(quantity) && !isNaN(unitPrice)) {
-                    var total = quantity * unitPrice;
-                    $('input[name="total"]').val(total.toFixed(2));
-                }
-            }
-        });
-
-
-</script>
 
 	<style type="text/css">
 		body
@@ -45,7 +24,7 @@
 			position: relative;
 			display: flex;
 			padding: 20px;
-			z-index: -1;
+	
 
 		}
 		label
@@ -142,6 +121,27 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><input type="text" name="item[]" class="data"></td>
+        <td><input type="number" name="unitprice[]" class="data unit-price" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="quantity[]" class="data quantity" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="total[]" disabled class="data total" value="0.00"></td>
+        <td><button onclick="deleteRow(this)" class="ms-3"><i class="fas fa-trash text-danger"></i></button></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="item[]" class="data"></td>
+        <td><input type="number" name="unitprice[]" class="data unit-price" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="quantity[]" class="data quantity" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="total[]" disabled class="data total" value="0.00"></td>
+        <td><button onclick="deleteRow(this)" class="ms-3"><i class="fas fa-trash text-danger"></i></button></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="item[]" class="data"></td>
+        <td><input type="number" name="unitprice[]" class="data unit-price" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="quantity[]" class="data quantity" oninput="calculateRowTotal(this)"></td>
+        <td><input type="number" name="total[]" disabled class="data total" value="0.00"></td>
+        <td><button onclick="deleteRow(this)" class="ms-3"><i class="fas fa-trash text-danger"></i></button></td>
+      </tr>
       <tr>
         <td><input type="text" name="item[]" class="data"></td>
         <td><input type="number" name="unitprice[]" class="data unit-price" oninput="calculateRowTotal(this)"></td>

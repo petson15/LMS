@@ -19,7 +19,7 @@
 		body
 		{
 			font-family: sans-serif;
-			font-size: 14px;
+			font-size: 15px;
 			margin: 0;
 			padding: 0;
 		}
@@ -120,7 +120,7 @@
                               <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="">Today sales</a></li>
+                            <li><a class="dropdown-item" href="today-sales.php">Today sales</a></li>
                           
 
                         </ul>
@@ -158,14 +158,14 @@
                     <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links">Inventory</span></a>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links"> Add purchase</span></a></li>
-                        <li><a class="nav-link text-white" href=""><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links">Today sales</span></a></li>
+                        <li><a class="nav-link text-white" href="today-sales.php"><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links">Today sales</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item has-submenu my-2">
                     <a class="nav-link text-white" href="#"><i class="fa-solid fa-user-group"></i><span class="links">customer management</a></span>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">customers</span></a></li>
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">customer profile</span></a></li>
+                        <li><a class="nav-link text-white" href="customers.php"><i class="fa-solid fa-user"></i><span class="links">customers</span></a></li>
+                      
                     </ul>
                 </li>
                 <li class="nav-item my-2">

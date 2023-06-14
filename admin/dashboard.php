@@ -39,6 +39,7 @@
     		  height: 90px;
      		 background-color: #515448;
      		 border-radius: 5px;
+         margin: 20px auto;
 
      		
    		 }
@@ -105,7 +106,7 @@
 </div>
 		
 	<div class="dash-info">
-	 <div class="item-count my-3 ms-3 first-col">
+	 <div class="item-count my-3 ms-5 me-5 first-col">
       <div>
         <i class="fa-solid fa-cart-shopping fa-lg d-flex justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">6</p>
@@ -113,14 +114,14 @@
       </div>
     </div>
 
-    <div class="item-count my-3 ms-5 first-col">
+    <div class="item-count my-3 ms-5  first-col">
       <div>
         <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">GHC 600</p>
         <p class="text-white d-flex justify-content-center" >Total sales</p>
       </div>
     </div>
-     <div class="item-count my-3 ms-5 first-col">
+     <div class="item-count my-3 ms-4 first-col">
       <div>
         <i class="fa-solid fa-user-group fa-lg d-flex justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">600</p>
