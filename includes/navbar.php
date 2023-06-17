@@ -171,7 +171,7 @@
                 <li class="nav-item my-2">
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS-order</span></a></li>
+                        <li><a class="nav-link text-white" href="pos-order.php"><i class="fa-solid fa-desktop"></i><span class="links">POS-order</span></a></li>
                         <li><a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">My orders</span></a></li>
                     </ul>
                 </li>
