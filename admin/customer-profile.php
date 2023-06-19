@@ -1,3 +1,11 @@
+<?php 
+	
+	include_once('../dbconfig/config.php');
+	
+
+
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,17 +42,35 @@
 </head>
 <body>
 
-	<?php include_once('../includes/navbar.php') ?>
+	<?php  include_once('../includes/navbar.php');
+
+
+	$customerID = $_SESSION['customer_id'];
+
+	$sql = "SELECT * FROM orderitems WHERE id = '$customerID'";
+	$res = mysqli_query($conn, $sql);
+
+	if (!$res) {
+		// code...
+		echo "error in sql" . mysqli_error($conn);
+	}
+
+	$row = mysqli_fetch_assoc($res);
+
+	$visit_count = mysqli_num_rows($res);
+
+
+	?>
 
 	<div class="container"><h4 style=" margin:30px; color: grey; margin-left: 1px;">Customer Profile</h4></div>
 
 	<div class="container">
 		
-		<h5>Customer Name: Godwin</h5>
-		<h5>Customer Tel: 0556524653</h5>
-		<h5>Sex: male</h5>
-		<h5>Recent visit: 23/5/23 23:00</h5>
-		<h5>Frequency of viists: 40</h5>
+		<h5>Customer Name: <?php echo $row['customer']; ?></h5>
+		<h5>Customer Tel: <?php echo $row['telephone']; ?></h5>
+		<h5>Sex: <?php echo $row['sex'] ?></h5>
+		<h5>Recent visit: <?php echo $row['order_date']; ?></h5>
+		<h5>Frequency of viists: <?php echo $visit_count; ?></h5>
 		<h5>Average spending: GHC 4000</h5>
 		<h5>Total spending: GHC 4000</h5>		
 
