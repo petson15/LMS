@@ -39,7 +39,7 @@ mysqli_close($conn);
 
 unset($_SESSION['cart']);
 
-echo "<script>window.location.href='purchase.php'</script>";
+echo "<script>window.location.href='orders.php'</script>";
 
 
 

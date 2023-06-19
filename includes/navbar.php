@@ -176,7 +176,7 @@ session_start();
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS</span></a>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href="pos-order.php"><i class="fa-solid fa-desktop"></i><span class="links">POS-order</span></a></li>
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">My orders</span></a></li>
+                        <li><a class="nav-link text-white" href="orders.php"><i class="fa-solid fa-desktop"></i><span class="links">My orders</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item my-2">
