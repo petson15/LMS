@@ -1,5 +1,4 @@
 <?php  
-session_start();
 include_once('../dbconfig/config.php');
 
 $sql = 'SELECT * FROM menu';
@@ -10,7 +9,7 @@ if (!$res) {
 }
 
 ?>
-
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +20,7 @@ if (!$res) {
     <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script>
+
         $(document).ready(function(){
             $(".btn-add-item").click(function(){
                 let item = $(this).attr("item");
@@ -31,6 +31,13 @@ if (!$res) {
                 let customerName = $("input[name='cus-name']").val();
                  let sex = $("select[name='sex']").val();
                   let paymentMethod = $("select[name='pay-method']").val();
+                  let express = $("select[name='express']").val();
+
+                     if (telephone === '') {
+            alert('hello');
+            return false;
+        }
+
 
                 $.ajax({
                     url: "../ajax/add_menu.php",
@@ -41,9 +48,10 @@ if (!$res) {
                         quantity: quantity,
                         telephone: telephone,
                         customerName: customerName,
-                         sex: sex, 
+                        sex: sex, 
                         paymentMethod: paymentMethod,
-                        id: id
+                        id: id,
+                        express: express
 
 
                     },
@@ -51,8 +59,11 @@ if (!$res) {
                         $(".item_table").html(data);
                     }
                 });
+
             });
         });
+
+
     </script>
 
     <style type="text/css">
@@ -128,12 +139,12 @@ if (!$res) {
         <div class="pos-form ms-4">
             <label for="cus-name" class="ms-">
                 Telephone:
-                <input type="tel" name="tel">
+                <input type="tel" name="tel" required>
             </label>
             
             <label for="cus-name" class="me-">
                 Customer name:
-                <input type="text" name="cus-name">
+                <input type="text" name="cus-name" required>
             </label>
 
             <label for="cus-name" class="me-">
@@ -143,7 +154,7 @@ if (!$res) {
 
         <div class="form-floating d-flex justify-content-end my-3 me-3" id="select">
             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="pay-method">
-                <option selected class="text-muted">Payment method</option>
+                <option value="0" class="text-muted">Payment method</option>
                 <option value="MOMO">Momo</option>
                 <option value="Cash">Cash</option>
             </select>
@@ -151,17 +162,30 @@ if (!$res) {
 
         <div class="form-floating d-flex justify-content-end my-3 me-3" id="select">
             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="sex">
-                <option selected class="text-muted">Select Sex</option>
+                <option value="0" class="text-muted">Select Sex</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="form-floating d-flex justify-content-end my-3 me-3" id="select">
+            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="express">
+                <option selected class="text-muted" value="0">express</option>
+                <option value="50">50 percent</option>
+                <option value="60">60 percent</option>
+                <option value="70">70 percent</option>
+                <option value="80">80 percent</option>
+                <option value="90">90 percent</option>
+                <option value="100">100 percent</option>
             </select>
         </div>
         
         <div class="ms-5 my-2" style="width:100%; margin-right:20px;">
             <hr>
+            
         </div>
          <div >
         <div class="item_table"></div>
+        
     </div>
 
     </div>
@@ -176,6 +200,7 @@ if (!$res) {
                 </div>
                 <div class="modal-body">
                     <div class="mb-3" style="overflow: auto;">
+                        <input type="search" name="search" class="search" placeholder="Search item" style="width: 100%">
                         <table style="margin: 20px auto; border-collapse: collapse; padding: 200px;" class="table table-striped">
                             <thead>
                                 <th>Item</th>
@@ -183,11 +208,7 @@ if (!$res) {
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="3">
-                                        <input type="search" name="search" class="search" placeholder="Search item" style="width: 100%">
-                                    </td>
-                                </tr>
+                                
                                 <?php
                                 while ($row = mysqli_fetch_assoc($res)) {
                                 ?>
@@ -208,5 +229,7 @@ if (!$res) {
             </div>
         </div>
     </div>
+
+            
 </body>
 </html>

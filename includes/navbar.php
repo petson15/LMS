@@ -1,4 +1,5 @@
 <?php  
+session_start();
 
 
  
@@ -14,6 +15,9 @@
 	<script type="" src="../js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
 	<title></title>
+
+    <script type="text/javascript">
+    </script>
 
 	<style type="text/css">
 		body
@@ -141,7 +145,7 @@
                             <li><a class="dropdown-item" href="pos.php?action=logout">Logout</a></li>
                         </ul>
                     </div>
-                    <span class="me-5 text-white"><small><?php //echo $_SESSION['user1']; ?></small></span>
+                    <span class="me-5 text-white"><small class="ms-"><?php echo $_SESSION['user']; ?></small></span>
                 </form>
             </div>
         </div>

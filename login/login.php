@@ -1,6 +1,4 @@
 <?php  
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 	session_start();
 	
@@ -32,8 +30,8 @@ ini_set('display_errors', 1);
 
             while($rows = mysqli_fetch_assoc($query))
             {
-              $user1 = $rows['username'];
-              $_SESSION['user1'] = $user1;
+              $user = $rows['username'];
+              $_SESSION['user'] = $user;
             }
 
 
