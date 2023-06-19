@@ -19,15 +19,17 @@ foreach ($_SESSION['cart'] as $item) {
     $itemExpressAmount = $item['express'];
     $itemPrice = $item['price'];
     $total = $_SESSION['total'];
-    $sql = "INSERT INTO orderitems (order_id, item, customer, telephone, sex, paymethod, ExpressAmount, price, total)
-            VALUES ('$id', '$itemId', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total')";
+    $servedby = $_SESSION['user'];
+    $currentDate = date('Y-m-d');
+    $sql = "INSERT INTO orderitems (order_id, item, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed)
+            VALUES ('$id', '$itemId', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0)";
 
     // Execute the SQL query
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
         // Error occurred during insertion
-         echo "" . mysqli_error($conn);
+         echo "error in sql" . mysqli_error($conn);
         exit;
     }
 }
@@ -37,5 +39,9 @@ mysqli_close($conn);
 
 unset($_SESSION['cart']);
 
-echo "Insertion successful!";
+echo "<script>window.location.href='purchase.php'</script>";
+
+
+
 ?>
+

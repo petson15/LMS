@@ -6,7 +6,7 @@
     $express_amount = 0;
     $item = $_POST['item'];
     $price = $_POST['price'];
-    $quantity = $_POST['quantity'];
+    $quantity =  $_POST['quantity'];
     $telephone = $_POST['telephone'];
     $customerName = $_POST['customerName'];
     $sex = $_POST['sex'];
@@ -92,7 +92,7 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
         let customerName = $("input[name='cus-name']").val();
         let express = $("select[name='express']").val();
 
-     
+
         $.ajax({
             url: "../ajax/place-order.php",
             method: "POST",
@@ -150,6 +150,9 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
 
 </script>
 <body>
+
+   
+
     <div>
      <?php
     $total = 0;
