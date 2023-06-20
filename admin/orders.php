@@ -1,4 +1,4 @@
-<?php  
+ <?php  
 include_once('../dbconfig/config.php');
 $page = 1;
 if (isset($_GET['page'])) {
@@ -121,7 +121,7 @@ $total_pages = ceil($total_rows/$num_per_page);
       <td><?php echo $row['customer'] ?></td>
       <td><?php echo $row['telephone'] ?></td>
       <td><?php echo $row['paymethod'] ?></td>
-      <td><?php echo $row['total'] ?></td>
+      <td>GHC <?php echo $row['total'] ?></td>
       <td><?php echo $row['order_date'] ?></td>
       <td><?php echo $row['servedby'] ?></td>
       <td ><a href="orders.php?id=<?php echo $row['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-4 text-primary"></i></a></td>

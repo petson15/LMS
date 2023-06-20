@@ -7,7 +7,7 @@
 
 
 
-
+ 
 
 
 <!DOCTYPE html>
@@ -94,7 +94,7 @@
     <tr>
       <td><?php echo $row['order_id'] ?></td>
       <td><?php echo $row['item'] ?></td>
-      <td><?php echo $row['price'] ?></td>
+      <td>GHC <?php echo $row['price'] ?></td>
     </tr>
     <?php } ?>
   </tbody>

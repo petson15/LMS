@@ -186,7 +186,7 @@ session_start();
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-ellipsis"></i><span class="links">Menu Items</span></a>
+                    <a class="nav-link text-white" href="menu.php"><i class="fa-solid fa-ellipsis"></i><span class="links">Menu Items</span></a>
                 </li>
                 <li class="nav-item my-2">
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">Profile</span></a>

@@ -6,7 +6,7 @@
 	$page = 1;
 if (isset($_GET['page'])) {
 	// code...
-	$page = $_GET['page'];
+	$page = $_GET['page']; 
 }
 else
 {
@@ -115,7 +115,7 @@ $total_pages = ceil($total_rows/$num_per_page);
       <td><?php echo $rows['customer']; ?> </td>
       <td><?php echo $rows['telephone']; ?> </td>
       <td><?php echo $rows['paymethod']; ?> </td>
-      <td><?php echo $rows['total']; ?>  </td>
+      <td>GHC <?php echo $rows['total']; ?>  </td>
       <td><?php echo $rows['order_date']; ?>  </td>
       <td><?php echo $rows['servedby']; ?>  </td>
       <td ><a href="orders.php?id=<?php echo $rows['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-4 text-primary"></i></a></td>
