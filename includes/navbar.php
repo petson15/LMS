@@ -130,13 +130,13 @@ session_start();
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" >
+                <form class="d-flex me-4" role="search" >
                     <div class="dropdown"  >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                             <img src="../avatars/avatar.jpeg"  style=" height: 25px; width: 25px; border-radius: 50%; ">
                         </a>
 
-                        <ul class="dropdown-menu me-5">
+                        <ul class="dropdown-menu ">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="change-password.php">Change password</a></li>
                             <li>
@@ -145,7 +145,7 @@ session_start();
                             <li><a class="dropdown-item" href="pos.php?action=logout">Logout</a></li>
                         </ul>
                     </div>
-                    <span class="me-5 text-white"><small class="ms-"><?php echo $_SESSION['user']; ?></small></span>
+                    <span class=" text-white"><small class="ms-"><?php echo $_SESSION['user']; ?></small></span>
                 </form>
             </div>
         </div>
@@ -182,7 +182,7 @@ session_start();
                 <li class="nav-item my-2">
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links">Order management</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-list"></i><span class="links">orders</span></a></li>
+                        <li><a class="nav-link text-white" href="all-orders.php"><i class="fa-solid fa-list"></i><span class="links">orders</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item my-2">

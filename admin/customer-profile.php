@@ -47,7 +47,7 @@
 
 	$customerID = $_SESSION['customer_id'];
 
-	$sql = "SELECT * FROM orderitems WHERE id = '$customerID'";
+	$sql = "SELECT * FROM orderitems WHERE id = '$customerID' GROUP BY order_date DESC";
 	$res = mysqli_query($conn, $sql);
 
 	if (!$res) {
@@ -57,7 +57,37 @@
 
 	$row = mysqli_fetch_assoc($res);
 
-	$visit_count = mysqli_num_rows($res);
+
+
+	$telephone = $row['telephone'];
+
+	$query = "SELECT AVG(price) AS average_spending FROM orderitems WHERE telephone = '$telephone'";
+
+	$result = mysqli_query($conn, $query);
+
+	if (!$result) {
+		// code...
+		echo "error in sql".mysqli_error($conn);
+	}
+
+	$fetch = mysqli_fetch_assoc($result);
+
+	$total_spending  = "SELECT SUM(price) AS total_spending FROM orderitems WHERE telephone ='$telephone'";
+	$total_spending_result = mysqli_query($conn, $total_spending);
+
+	if (!$total_spending_result) {
+		// code...
+		echo "error in sql" . mysqli_error($conn);
+	}
+
+	$total_spending_row = mysqli_fetch_assoc($total_spending_result);
+	
+
+		$visit_query = "SELECT telephone,order_id FROM orderitems WHERE telephone = '$telephone' GROUP BY order_id";
+		$visit_Result = mysqli_query($conn, $visit_query);
+
+		$visit_count = mysqli_num_rows($visit_Result);
+
 
 
 	?>
@@ -66,13 +96,13 @@
 
 	<div class="container">
 		
-		<h5>Customer Name: <?php echo $row['customer']; ?></h5>
-		<h5>Customer Tel: <?php echo $row['telephone']; ?></h5>
-		<h5>Sex: <?php echo $row['sex'] ?></h5>
-		<h5>Recent visit: <?php echo $row['order_date']; ?></h5>
-		<h5>Frequency of viists: <?php echo $visit_count; ?></h5>
-		<h5>Average spending: GHC 4000</h5>
-		<h5>Total spending: GHC 4000</h5>		
+<h6>Customer Name: <b><?php echo $row['customer']; ?></b></h6>
+		<h6>Customer Tel: <b><?php echo $row['telephone']; ?></b></h6>
+		<h6>Sex: <b><?php echo $row['sex'] ?></b></h6>
+		<h6>Recent visit: <b><?php echo $row['order_date']; ?></b></h6>
+		<h6>Frequency of viists: <b><?php echo $visit_count; ?></b></h6>
+		<h6>Average spending: <b><?php echo  $fetch['average_spending'];?></b></h6>
+		<h6>Total spending: <b><?php echo $total_spending_row['total_spending']; ?></b></h6>		
 
 
 		<h6 class="my-5">Summary of orders:</h6>
@@ -89,28 +119,27 @@
     </tr>
   </thead>
   <tbody >
+  	<?php  
+
+  		$query = "SELECT telephone, order_id, total, order_date, GROUP_CONCAT(item SEPARATOR ', ') AS items FROM orderitems WHERE telephone = '$telephone' GROUP BY order_id";
+
+  		$result = mysqli_query($conn, $query);
+
+  		while ($rows = mysqli_fetch_assoc($result)) {
+  			// code...
+  		
+
+  	?>
     <tr >
-      <td>qwsa42ea23</td>
-      <td>12:00 23/23/21</td>
-      <td>caftan, singlet, boxers, pants, curtains</td>
-      <td>GHC 2000</td>
+      <td><?php echo $rows['order_id']; ?></td>
+      <td><?php echo $rows['order_date']; ?></td>
+      <td><?php echo $rows['items']; ?></td>
+      <td><?php echo $rows['total']; ?></td>
       <td>23:12 23/23/23</td>
     </tr>
-    <tr>
-      <td>qwsa42ea23</td>
-      <td>12:00 23/23/21</td>
-      <td>caftan, singlet, boxers, pants, curtains</td>
-      <td>GHC 2000</td>
-      <td>23:12 23/23/23</td>
-    </tr>
-    <tr>
-      <td>qwsa42ea23</td>
-      <td>12:00 23/23/21</td>
-      <td>caftan, singlet, boxers, pants, curtains</td>
-      <td>ghc 2000</td>
-      <td>23:12 23/23/23</td>
-    </tr>
+<?php } ?>
   </tbody>
+
 </table>
 
 
