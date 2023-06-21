@@ -1,6 +1,7 @@
 <?php  
 include_once('../dbconfig/config.php');
 
+
 $sql = 'SELECT * FROM menu';
 $res = mysqli_query($conn, $sql);
 
@@ -40,7 +41,14 @@ if (!$res) {
                      if (telephone === '' || customerName === '' || paymentMethod == 0 || sex == 0) {
            $('#myModal').modal('show');
             return false;
-        }
+        }   
+
+                    if (telephone.length != 10) 
+                    {
+                        $('#thisModal').modal('show');
+                       return false;
+
+                    }
 
 
                 $.ajax({
@@ -141,9 +149,9 @@ if (!$res) {
     
     <div class="container my-5" style="max-width: 80%;">
         <div class="pos-form ms-4">
-            <label for="cus-name" class="ms-">
+            <label for="tel" class="ms-">
                 Telephone:
-                <input type="tel" name="tel" required>
+                <input type="tel" name="tel" pattern="^(\+233|0)[236][0-9]{8}$" required>
             </label>
             
             <label for="cus-name" class="me-">
@@ -251,6 +259,25 @@ if (!$res) {
     </div>
   </div>
 </div>
+
+
+    <div class="modal fade" id="thisModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">ERROR IN ORDER</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-danger">
+        Phone number is incorrect
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
             
 </body>

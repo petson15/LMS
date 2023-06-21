@@ -3,8 +3,35 @@
   include_once('../dbconfig/config.php');
 
 
-  $sql = 'SELECT * FROM menu';
+  
+
+  $page = 1;
+  if (isset($_GET['page'])) {
+  $page = $_GET['page'];
+} else {
+  $page = 1;
+}
+
+  $start_from = ($page - 1) * 12;
+$num_per_page = 12;
+
+
+
+
+$sql = "SELECT * FROM menu LIMIT $start_from, $num_per_page ";
   $result = mysqli_query($conn, $sql);
+
+  if (!$result) {
+    // code...
+    echo "<script>alert('error in sql')</script>";
+  }
+
+$total_rows_sql = "SELECT COUNT(item) AS total FROM menu";
+$total_rows_result = mysqli_query($conn, $total_rows_sql);
+$total_rows_row = mysqli_fetch_assoc($total_rows_result);
+$total_rows = $total_rows_row['total'];
+$total_pages = ceil($total_rows / $num_per_page);
+
  
   if (isset($_POST['add'])) { 
 
@@ -66,6 +93,14 @@
         font-size: 13px;
 
       }
+
+     .btnPaginition {
+    position: relative;
+    left: 150px;
+    margin: 2px;
+    bottom: 50px;
+  }
+
     </style>
 
 </head>
@@ -156,7 +191,21 @@
             </tbody>
         </table>
     </div>
+<?php  
 
+  if ($page > 1) {
+    echo "<a class='btn-sm btnPaginition btn btn-primary text-primary bg-light' href='menu.php?page=" . ($page - 1) . "'>Previous</a>";
+  }
+
+  for ($i = 1; $i <= $total_pages; $i++) {
+    echo "<a class='btn-sm btnPaginition btn btn-primary text-primary bg-light' href='menu.php?page=$i'>$i</a>";
+  }
+
+  if ($page < $total_pages) {
+    echo "<a class='btn btn-sm btn-primary btnPaginition text-primary bg-light' href='menu.php?page=" . ($page + 1) . "'>Next</a>";
+  }
+
+?>
   
 
 

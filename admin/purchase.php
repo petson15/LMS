@@ -1,5 +1,15 @@
+<?php  
+
+	include_once('../dbconfig/config.php');
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,31 +65,39 @@
       <th scope="col">Invoice number</th>
       <th scope="col">Total Amount</th>
       <th scope="col">Date</th>
-      <th scope="col">Saved by</th>
+      <th scope="col">Logged by</th>
+      <th scope="col">Time logged</th>
     </tr>
   </thead>
+  <?php  
+
+  	$sql = "SELECT DISTINCT dates, supplier, invoice, loggedby,purchase_date FROM purchases GROUP BY dates";
+  	$res = mysqli_query($conn, $sql);
+
+  	if (!$res) {
+  		// code...
+
+  		echo "errror in sql " . mysqli_error($conn);
+  	}
+
+
+  ?>
   <tbody>
+  	<?php  
+  			while ($row = mysqli_fetch_assoc($res)) {
+  				// code...
+  			
+
+  	?>
     <tr>
-      <td>Mark</td>
-      <td>1234</td>
+      <td><?php echo  $row['supplier']; ?></td>
+      <td><?php echo  $row['invoice']; ?></td>
       <td>GHC 600</td>
-      <td>28/5/23 11:13</td>
-      <td>Burst clean</td>
+      <td><?php echo  $row['dates']; ?></td>
+      <td><?php echo  $row['loggedby']; ?></td>
+      <td><?php echo  $row['purchase_date']; ?></td>
     </tr>
-    <tr>
-       <td>Mark</td>
-      <td>1234</td>
-      <td>GHC 600</td>
-      <td>28/5/23 11:13</td>
-      <td>Burst clean</td>
-    </tr>
-    <tr>
-       <td>Mark</td>
-      <td>1234</td>
-      <td>GHC 600</td>
-      <td>28/5/23 11:13</td>
-      <td>Burst clean</td>
-    </tr>
+  <?php } ?>
   </tbody>
 </table>
 

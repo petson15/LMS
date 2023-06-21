@@ -155,6 +155,7 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
 
     <div>
      <?php
+
     $total = 0;
     $express =0;
     $output = "";
