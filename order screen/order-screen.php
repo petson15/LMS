@@ -11,7 +11,7 @@
       echo "error in sql" . mysqli_error($conn);
     }
 
-    $tt = date('Y-m-d');
+    
 
 
 
@@ -35,10 +35,18 @@
 	$(document).ready(function() {
   $(".complete-btn").click(function() {
     var id = $(this).data("id");
+    var item = $(this).data("item");
+    var servedby = $(this).data("servedby");
+    var price = $(this).data("price");
     $.ajax({
       url: "order-screen.php",
       method: "GET",
-      data: { id: id },
+      data: {
+       id: id,
+       item: item,
+       servedby: servedby,
+       price: price 
+     },
       success: function(response) {
         $('#myModal').modal('show');
       },
@@ -135,7 +143,8 @@
       <td style="color: red;" ><?php echo $timer ?></td>
       <td><?php echo $rows['servedby'];?></td>
       <td>
-        <button class="btn bg-primary text-white complete-btn" data-id="<?php echo $rows['id']; ?>" style="width:150px">Complete</button>
+        <button class="btn bg-primary text-white complete-btn" data-id="<?php echo $rows['id']; ?>" data-items="<?php echo $rows['item'] ?>" data-price ="<?php echo $rows['price'] ?>" data-servedby="<?php echo $rows['servedby'] ?>" style="width:150px">
+        Complete</button>
       </td>
     </tr>
   <?php endif ?>
@@ -151,23 +160,19 @@
       // code...
 
       $id = $_GET['id'];
+      $tt = date('Y-m-d, H:i:s');
 
-      $sql_update = "UPDATE orderitems SET completed=1 WHERE id=$id";
+      $sql_update = "UPDATE orderitems SET completed=1, completed_date ='$tt'  WHERE id=$id";
       $res_update = mysqli_query($conn, $sql_update);
 
-      if($res_update)
+      if(!$res_update)
       {
-        
-
-      
-      }
-      else
-      {
-        echo "error in code". mysqli_error($conn);
+             echo "error in code". mysqli_error($conn);
       }
 
     }
 
+    
 
 
 

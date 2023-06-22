@@ -121,7 +121,7 @@
   <tbody >
   	<?php  
 
-  		$query = "SELECT telephone, order_id, total, order_date, GROUP_CONCAT(item SEPARATOR ', ') AS items FROM orderitems WHERE telephone = '$telephone' GROUP BY order_id";
+  		$query = "SELECT telephone, order_id, total, order_date, completed_date, GROUP_CONCAT(item SEPARATOR ', ') AS items FROM orderitems WHERE telephone = '$telephone' GROUP BY order_id";
 
   		$result = mysqli_query($conn, $query);
 
@@ -135,7 +135,7 @@
       <td><?php echo $rows['order_date']; ?></td>
       <td><?php echo $rows['items']; ?></td>
       <td><?php echo $rows['total']; ?></td>
-      <td>23:12 23/23/23</td>
+      <td><?php echo $rows['completed_date']; ?></td>
     </tr>
 <?php } ?>
   </tbody>
@@ -145,6 +145,10 @@
 
 
 	</div>
+
+
+
+
 
 </body>
 </html>

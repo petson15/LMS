@@ -141,7 +141,7 @@ session_start();
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="pos.php?action=logout">Logout</a></li>
+                            <li><a class="dropdown-item" href="dashboard.php?action=logout">Logout</a></li>
                         </ul>
                     </div>
                     <span class=" text-white"><small class="ms-"><?php echo $_SESSION['user']; ?></small></span>
@@ -149,6 +149,20 @@ session_start();
             </div>
         </div>
     </nav>
+
+    <?php  
+
+        if (isset($_GET['action'])) {
+            // code...
+            if ($_GET['action'] == 'logout') {
+                // code...
+                session_destroy();
+                echo "<script>window.location.href='../login/login.php'</script>";
+            }
+        }
+
+
+    ?>
 
 <div style="height: 120vh; float: left; position: fixed; display: block;" class="text-white nav-side">
 
@@ -191,7 +205,7 @@ session_start();
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">Profile</span></a>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href=""><i class="fa-solid fa-lock"></i><span class="links">Change password</span></a></li>
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-right-from-bracket"></i><span class="links">Logout</span></a></li>
+                        <li><a class="nav-link text-white" href="dashboard.php?action=logout"><i class="fa-solid fa-right-from-bracket"></i><span class="links">Logout</span></a></li>
                     </ul>
 
                 </li>
