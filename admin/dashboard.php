@@ -118,7 +118,7 @@
       <div>
         <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">GHC 600</p>
-        <p class="text-white d-flex justify-content-center" >Total sales</p>
+        <p class="text-white d-flex justify-content-center" >Total sales daily</p>
       </div>
     </div>
      <div class="item-count my-3 ms-4 first-col">
@@ -126,6 +126,31 @@
         <i class="fa-solid fa-user-group fa-lg d-flex justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">600</p>
         <p class="text-white d-flex justify-content-center" >Customers</p>
+      </div>
+    </div>
+ </div>
+
+  <div class="dash-info">
+   <div class="item-count my-3 ms-5 me-5 first-col">
+      <div>
+      <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC 600</p>
+        <p class="text-white d-flex justify-content-center" >Total pending orders</p>
+      </div>
+    </div>
+
+    <div class="item-count my-3 ms-5  first-col">
+      <div>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC 600</p>
+        <p class="text-white d-flex justify-content-center" >Total completed orders</p>
+      </div>
+    </div>
+     <div class="item-count my-3 ms-4 first-col">
+      <div>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">600</p>
+        <p class="text-white d-flex justify-content-center" >Overall total sales</p>
       </div>
     </div>
  </div>

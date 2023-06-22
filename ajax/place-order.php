@@ -20,7 +20,7 @@
       background-color: rgba(0, 0, 0, 0.4);
     }
     
-    .modal-contents {
+    .modal-contents { 
       background-color: #fefefe;
       margin: 15% auto;
       padding: 40px;
@@ -55,8 +55,9 @@ foreach ($_SESSION['cart'] as $item) {
     $total = $_SESSION['total'];
     $servedby = $_SESSION['user'];
     $currentDate = date('Y-m-d');
-    $sql = "INSERT INTO orderitems (order_id, item, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed)
-            VALUES ('$id', '$itemId', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0)";
+    $itemquantity = $item['quantity']; 
+    $sql = "INSERT INTO orderitems (order_id, item, quantity, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed)
+            VALUES ('$id', '$itemId','$itemquantity', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0)";
 
     // Execute the SQL query
     $result = mysqli_query($conn, $sql);

@@ -24,7 +24,7 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $telephone = $_POST['telephone'];
-    $customerName = $_POST['customerName'];
+    $customerName = $_POST['customerName']; 
     $sex = $_POST['sex'];
     $paymentMethod = $_POST['paymentMethod'];
     $express_amount = $_POST['express'];

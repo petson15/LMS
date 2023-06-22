@@ -113,7 +113,7 @@ session_start();
                         <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="">order screen</a>
+                        <a class="nav-link text-white" href="../order screen/order-screen.php" target="_blank">order screen</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -137,7 +137,6 @@ session_start();
                         </a>
 
                         <ul class="dropdown-menu ">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="change-password.php">Change password</a></li>
                             <li>
                                 <hr class="dropdown-divider">

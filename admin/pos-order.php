@@ -33,7 +33,7 @@ if (!$res) {
                 let price = $(this).attr("price");
                 let quantity = $(this).closest("tr").find(".form-control").val();
                 let telephone = $("input[name='tel']").val();
-                let customerName = $("input[name='cus-name']").val();
+                let customerName = $("input[name='cus-name']").val(); 
                  let sex = $("select[name='sex']").val();
                   let paymentMethod = $("select[name='pay-method']").val();
                   let express = $("select[name='express']").val();
