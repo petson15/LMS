@@ -60,7 +60,7 @@
    		 }
    		 .item-count i
    		 {
-   		 	padding-top: 18px;
+   		 	padding-top: 15px;
    		 }
    		 .dash-info
    		 {
@@ -101,11 +101,7 @@
 
 	<?php include_once('../includes/navbar.php'); 
 
-     if ($_SESSION['admin'] != 'true') {
-    // code...
-    session_destroy();
-    echo "<script>window.location.href='../login/login.php'</script>";
-  }
+
 
   ?>
 
@@ -140,7 +136,7 @@
 	<div class="dash-info">
 	 <div class="item-count my-3 ms-5 me-5 first-col">
       <div>
-        <i class="fa-solid fa-cart-shopping fa-lg d-flex justify-content-center text-white"></i>
+        <i class="fa-solid fa-cart-shopping fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center"><?php echo $counts['item_count']; ?></p>
         <p class="text-white d-flex justify-content-center" >Item Count</p>
       </div>
@@ -162,7 +158,7 @@
 
     <div class="item-count my-3 ms-5  first-col">
       <div>
-        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+        <i class="fa-solid fa-solid fa-hand-holding-dollar fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">GHC <?php echo $salesTotal['sales_total']; ?></p>
         <p class="text-white d-flex justify-content-center" >Total sales daily</p>
       </div>
@@ -188,12 +184,81 @@
     </div>
      <div class="item-count my-3 ms-4 first-col">
       <div>
-        <i class="fa-solid fa-user-group fa-lg d-flex justify-content-center text-white"></i>
+        <i class="fa-solid fa-user-group fa-lg d-flex justify-content-center pb-2 py-3 text-white"></i>
         <p class="text-white d-flex justify-content-center"><?php  echo $total_customers['total_customers']; ?></p>
         <p class="text-white d-flex justify-content-center" >Customers</p>
       </div>
     </div>
  </div>
+
+
+
+ <?php  
+
+  $currentDate = date('Y-m-d');
+  $pending_daily = "SELECT SUM(price) AS pending_total FROM orderitems WHERE completed =0 AND DATE(order_date) = '$currentDate' ";
+  $pending_daily_sales = mysqli_query($conn, $pending_daily);
+
+  if (!$pending_daily_sales) {
+    // code...
+    echo "error in sql" . mysqli_error($conn);
+  }
+
+  $pending_daily_total = mysqli_fetch_assoc($pending_daily_sales); 
+
+
+
+ ?>
+
+
+ <div class="dash-info">
+   <div class="item-count my-3 ms-5 me-5 first-col">
+      <div>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $pending_daily_total['pending_total'] ?></p>
+        <p class="text-white d-flex justify-content-center" >Total pending daily</p>
+      </div>
+    </div>
+
+
+<?php  
+
+      $completed_daily = "SELECT SUM(price) AS total FROM orderitems WHERE completed =1 AND DATE(order_date) = '$currentDate' ";
+  $completed_daily_sales = mysqli_query($conn, $completed_daily);
+
+  if (!$completed_daily_sales) {
+    // code...
+    echo "error in sql" . mysqli_error($conn);
+  }
+
+  $completed_daily_total = mysqli_fetch_assoc($completed_daily_sales); 
+
+
+ ?>
+
+   
+
+    <div class="item-count my-3 ms-5  first-col">
+      <div>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_daily_total['total'] ?></p>
+        <p class="text-white d-flex justify-content-center" >Total completed daily</p>
+      </div>
+
+    </div>
+     <div class="item-count my-3 ms-4 first-col">
+      <div>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_daily_total['total'] + $pending_daily_total['pending_total']?></p>
+        <p class="text-white d-flex justify-content-center" >Total sales daily</p>
+      </div>
+    </div>
+ </div>
+
+
+
+
+
 
  <?php  
 
@@ -210,12 +275,12 @@
 
 
  ?>
-
-
+ 
+ 
   <div class="dash-info">
    <div class="item-count my-3 ms-5 me-5 first-col">
       <div>
-      <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+      <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center ">GHC <?php echo $pending_sales['pending_total']; ?></p>
         <p class="text-white d-flex justify-content-center " >Total pending orders</p>
       </div>
@@ -238,19 +303,25 @@
 
     <div class="item-count my-3 ms-5  first-col">
       <div>
-        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
+        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
         <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_sales['completed_total']; ?></p>
         <p class="text-white d-flex justify-content-center" >Total completed orders</p>
       </div>
     </div>
      <div class="item-count my-3 ms-4 first-col">
-      <div>
-        <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex justify-content-center text-white"></i>
-        <p class="text-white d-flex justify-content-center"><?php echo $completed_sales['completed_total'] + $pending_sales['pending_total'] ; ?></p>
+      <div> 
+        <i class="fa-solid fa-solid fa-sack-dollar fa-fade fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_sales['completed_total'] + $pending_sales['pending_total'] ; ?></p>
         <p class="text-white d-flex justify-content-center" >Overall total sales</p>
       </div>
     </div>
- </div>
+
+
+</div>
+
+
+
+
 
  	<div class="my-5 tab">
 
@@ -342,9 +413,94 @@
 
 
 
+  <?php
+// Fetch the total elapsed time for all completed orders
+$query = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(completed_date, order_date))) AS total_elapsed_time FROM orderitems WHERE completed = 1";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$totalElapsedTime = $row['total_elapsed_time'];
+
+// Fetch the total number of completed orders
+$query = "SELECT COUNT(*) AS total_completed_orders FROM orderitems WHERE completed = 1";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$totalCompletedOrders = $row['total_completed_orders'];
+
+if ($totalCompletedOrders > 0) {
+    $averageElapsedTime = $totalElapsedTime / $totalCompletedOrders;
+    $averageTimer = gmdate('H:i:s', $averageElapsedTime);
+
+}
+?>
+
+<?php
+// Fetch the total number of customers
+$query = "SELECT COUNT(DISTINCT customer) AS total_customers FROM orderitems";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$totalCustomers = $row['total_customers'];
+
+// Fetch the total number of days
+$query = "SELECT COUNT(DISTINCT DATE(order_date)) AS total_days FROM orderitems";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$totalDays = $row['total_days'];
+
+if ($totalDays > 0) {
+    $averageCustomersPerDay = ceil($totalCustomers / $totalDays);
+
+    }
+?>
+<?php
+// Fetch the total number of customers
+$query = "SELECT COUNT(DISTINCT customer) AS total_customers FROM orderitems";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$totalCustomers = $row['total_customers'];
+
+// Fetch the number of customers who have placed an order within a specific period
+$query = "SELECT COUNT(DISTINCT customer) AS active_customers FROM orderitems WHERE order_date >= '2023-06-18' AND order_date <= '2023-06-23'";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$activeCustomers = $row['active_customers'];
+
+if ($totalCustomers > 0) {
+    $churnRate = ($totalCustomers - $activeCustomers) / $totalCustomers * 100;
+
+}
+?>
 
 
+
+<div class="dash-info my-5">
+   <div class="item-count my-3 ms-5 me-5 first-col" style="background-color:white;">
+      <div>
+      <i class="fa-solid fas fa-exclamation-triangle fa-2xl d-flex pb-2 py-3 justify-content-center text-warning" style="font-size: 70px;"></i>
+        <p class="text-dark d-flex justify-content-center  py-3"><?php echo ceil($churnRate). "%"; ?></p>
+        <p class="text-dark d-flex justify-content-center " >Customer churn</p>
+      </div>
+    </div>
+
+    <div class="item-count my-3 ms-5  first-col" style="background-color:white;">
+      <div>
+        <i class="fa-solid fa-solid fa-gauge fa-2xl d-flex pb-2 py-3 justify-content-center text-primary" style="font-size: 70px;"></i>
+        <p class="text-dark d-flex justify-content-center py-3"><?php echo $averageTimer; ?></p>
+        <p class="text-dark d-flex justify-content-center" >Average Time for completion</p>
+      </div>
+    </div>
+     <div class="item-count my-3 ms-4 first-col" style="background-color:white;">
+      <div>
+        <i class="fa-solid fa-solid fa-solid fa-user-tie fa-2xl d-flex pb-2 py-3 justify-content-center text-secondary" style="font-size: 70px;"></i>
+        <p class="text-dark d-flex justify-content-center py-3"> <?php echo $averageCustomersPerDay; ?></p>
+        <p class="text-dark d-flex justify-content-center" >Average customers</p>
+      </div>
+    </div>
+</div>
+
+
+
+
+</body>
 
 <?php include_once('../includes/footer.php'); ?>
-</body>
 </html>

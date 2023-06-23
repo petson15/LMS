@@ -1,3 +1,12 @@
+<?php  
+
+include_once('../dbconfig/config.php');
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,16 +55,33 @@
     </tr>
   </thead>
   <tbody >
+  	<?php  
+
+  	$currentDate = date('Y-m-d');
+  	$sql = "SELECT DISTINCT servedby, SUM(price) AS total FROM orderitems WHERE completed = 1 AND DATE(completed_date) = '$currentDate' GROUP BY servedby";
+  	$res = mysqli_query($conn, $sql);
+
+  	if (!$res) {
+  		// code...
+  		echo "error in sql" . mysqli_error($conn);
+  	}
+
+  	while ($row = mysqli_fetch_assoc($res)) {
+  		// code...
+  	
+
+  	?>
     <tr >
-      <td>Edwina</td>
-      <td>GHC 2000</td>
+      <td><?php echo $row['servedby'] ?></td>
+      <td><?php echo $row['total'] ?></td>
     </tr>
     <tr>
       <td>Total</td>
-      <td>GHC 2000</td>
+      <td><?php echo $row['total'] ?></td>
     </tr>
     
   </tbody>
+<?php } ?>
 </table>
 </div>
 

@@ -2,6 +2,11 @@
 session_start();
 
 
+if (isset($_SESSION['admin']) == 'true') {
+    // code...
+
+
+
  
 ?>
 
@@ -204,7 +209,7 @@ session_start();
                 <li class="nav-item my-2">
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">Profile</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href=""><i class="fa-solid fa-lock"></i><span class="links">Change password</span></a></li>
+                        <li><a class="nav-link text-white" href="change-password.php"><i class="fa-solid fa-lock"></i><span class="links">Change password</span></a></li>
                         <li><a class="nav-link text-white" href="dashboard.php?action=logout"><i class="fa-solid fa-right-from-bracket"></i><span class="links">Logout</span></a></li>
                     </ul>
 
@@ -252,6 +257,14 @@ session_start();
         // DOMContentLoaded  end
     </script>
 
+<?php } 
 
+else
+{
+    echo "<script>window.location.href='../login/login.php'</script>";
+}
+
+
+?>
 </body>
 </html>
