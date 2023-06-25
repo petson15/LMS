@@ -9,7 +9,7 @@ if (isset($_GET['page'])) {
 	$page = $_GET['page']; 
 }
 else
-{
+{ 
 	$page = 1;
 }
 $start_from =0;
@@ -19,7 +19,7 @@ $start_from = ($page - 1) * 12;
 
 
 
-$sql = "SELECT DISTINCT order_id, order_date, servedby,id, paymethod, total, telephone, customer
+$sql = "SELECT DISTINCT order_id, order_date, servedby,id, paymethod, total, telephone, customer,initialPayment
         FROM orderitems
         GROUP BY order_id DESC
         LIMIT $start_from, $num_per_page";
@@ -98,6 +98,8 @@ $total_pages = ceil($total_rows/$num_per_page);
       <th scope="col">Telephone</th>
       <th scope="col">Payment method</th>
       <th scope="col">Total</th>
+       <th scope="col">Initial payment</th>
+      <th scope="col">Amount Due</th>
       <th scope="col">Order date</th>
       <th scope="col">Served by</th>
       <th scope="col">Action</th>
@@ -116,6 +118,8 @@ $total_pages = ceil($total_rows/$num_per_page);
       <td><?php echo $rows['telephone']; ?> </td>
       <td><?php echo $rows['paymethod']; ?> </td>
       <td>GHC <?php echo $rows['total']; ?>  </td>
+      <td>GHC <?php echo $rows['initialPayment'] ?></td>
+      <td>GHC <?php echo $rows['total'] - $rows['initialPayment'] ?></td>
       <td><?php echo $rows['order_date']; ?>  </td>
       <td><?php echo $rows['servedby']; ?>  </td>
       <td ><a href="orders.php?id=<?php echo $rows['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-4 text-primary"></i></a></td>

@@ -68,16 +68,27 @@ include_once('../dbconfig/config.php');
 
   	while ($row = mysqli_fetch_assoc($res)) {
   		// code...
-  	
+  	$sql = "SELECT servedby, SUM(initialPayment) AS initialPaymentSum
+        FROM (
+          SELECT servedby, MAX(initialPayment) AS initialPayment
+          FROM orderitems
+          WHERE DATE(order_date) = '$currentDate'
+          GROUP BY servedby, initialPayment
+        ) AS subquery
+        GROUP BY servedby";
 
+
+        $res = mysqli_query($conn,$sql);
+        $initial_sum = mysqli_fetch_assoc($res);
+  
   	?>
     <tr >
       <td><?php echo $row['servedby'] ?></td>
-      <td><?php echo $row['total'] ?></td>
+      <td><?php echo $row['total'] + $initial_sum['initialPaymentSum'] ?></td>
     </tr>
     <tr>
       <td>Total</td>
-      <td><?php echo $row['total'] ?></td>
+      <td><?php echo $row['total'] + $initial_sum['initialPaymentSum']?></td>
     </tr>
     
   </tbody>

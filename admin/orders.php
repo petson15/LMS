@@ -14,10 +14,10 @@ $start_from =0;
 $num_per_page = 12;
 $start_from = ($page - 1) * 12;
 
+ 
 
 
-
-$sql = "SELECT DISTINCT id,order_id, order_date, servedby, paymethod, total, telephone, customer
+$sql = "SELECT DISTINCT id,order_id, order_date, servedby, paymethod, total, telephone, customer,initialPayment
         FROM orderitems
         GROUP BY order_id DESC
         LIMIT $start_from, $num_per_page";
@@ -102,6 +102,8 @@ $total_pages = ceil($total_rows/$num_per_page);
       <th scope="col">Telephone</th>
       <th scope="col">Payment method</th>
       <th scope="col">Total</th>
+      <th scope="col">Initial payment</th>
+      <th scope="col">Amount Due</th>
       <th scope="col">Order date</th>
       <th scope="col">Served by</th>
       <th scope="col">Action</th>
@@ -122,6 +124,8 @@ $total_pages = ceil($total_rows/$num_per_page);
       <td><?php echo $row['telephone'] ?></td>
       <td><?php echo $row['paymethod'] ?></td>
       <td>GHC <?php echo $row['total'] ?></td>
+      <td>GHC <?php echo $row['initialPayment'] ?></td>
+      <td>GHC <?php echo $row['total'] - $row['initialPayment'] ?></td>
       <td><?php echo $row['order_date'] ?></td>
       <td><?php echo $row['servedby'] ?></td>
       <td ><a href="orders.php?id=<?php echo $row['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-4 text-primary"></i></a></td>

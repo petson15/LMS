@@ -197,7 +197,7 @@ if (!$res) {
         <div class="d-flex justify-content-end me-5">
             <label for="initialpay" style="margin-right: 99px;">
                 initial payment: 
-                <input type="number" name="initial_payment"  style="outline: none;">
+                <input type="number" name="initial_payment"  style="outline: none;" required>
                 
             </label>
         </div>

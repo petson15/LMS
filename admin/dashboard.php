@@ -153,13 +153,25 @@
 
       $salesTotal = mysqli_fetch_assoc($sales_result);
 
+        $sql = "SELECT servedby, SUM(initialPayment) AS initialPaymentSum
+        FROM (
+          SELECT servedby, MAX(initialPayment) AS initialPayment
+          FROM orderitems
+          WHERE DATE(order_date) = '$currentDate'
+          GROUP BY servedby, initialPayment
+        ) AS subquery
+        GROUP BY servedby";
+
+
+        $res = mysqli_query($conn,$sql);
+        $initial_sum = mysqli_fetch_assoc($res);
 
     ?>
 
     <div class="item-count my-3 ms-5  first-col">
       <div>
         <i class="fa-solid fa-solid fa-hand-holding-dollar fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
-        <p class="text-white d-flex justify-content-center">GHC <?php echo $salesTotal['sales_total']; ?></p>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $salesTotal['sales_total'] +$initial_sum['initialPaymentSum']; ?></p>
         <p class="text-white d-flex justify-content-center" >Total sales daily</p>
       </div>
 
