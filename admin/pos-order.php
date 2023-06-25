@@ -9,7 +9,7 @@ if (!$res) {
     echo "error in sql" . mysqli_error();
 }
 
-
+ 
     
 
 
@@ -37,6 +37,7 @@ if (!$res) {
                  let sex = $("select[name='sex']").val();
                   let paymentMethod = $("select[name='pay-method']").val();
                   let express = $("select[name='express']").val();
+                  let initial_payment = $("input[name='initial_payment']").val();
 
                      if (telephone === '' || customerName === '' || paymentMethod == 0 || sex == 0) {
            $('#myModal').modal('show');
@@ -63,7 +64,8 @@ if (!$res) {
                         sex: sex, 
                         paymentMethod: paymentMethod,
                         id: id,
-                        express: express
+                        express: express,
+                        initial_payment: initial_payment
 
 
                     },
@@ -164,6 +166,7 @@ if (!$res) {
             </label>
         </div>
 
+
         <div class="form-floating d-flex justify-content-end my-3 me-3" id="select">
             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="pay-method">
                 <option value="0" class="text-muted">Payment method</option>
@@ -190,9 +193,17 @@ if (!$res) {
                 <option value="100">100 percent</option>
             </select>
         </div>
+
+        <div class="d-flex justify-content-end me-5">
+            <label for="initialpay" style="margin-right: 99px;">
+                initial payment: 
+                <input type="number" name="initial_payment"  style="outline: none;">
+                
+            </label>
+        </div>
         
         <div class="ms-5 my-2" style="width:100%; margin-right:20px;">
-            <hr>
+            <hr class="my-2">
             
         </div>
          <div >

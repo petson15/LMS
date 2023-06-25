@@ -10,7 +10,7 @@
     <style type="text/css">
         .modals {
       display: none;
-      position: fixed;
+      position: fixed; 
       z-index: 1;
       left: 0;
       top: 0;
@@ -55,9 +55,10 @@ foreach ($_SESSION['cart'] as $item) {
     $total = $_SESSION['total'];
     $servedby = $_SESSION['user'];
     $currentDate = date('Y-m-d');
-    $itemquantity = $item['quantity']; 
-    $sql = "INSERT INTO orderitems (order_id, item, quantity, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed, completed_date)
-            VALUES ('$id', '$itemId','$itemquantity', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0, 0)";
+    $itemquantity = $item['quantity'];
+    $initial_payment = $item['initialPay']; 
+    $sql = "INSERT INTO orderitems (order_id, item, quantity, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed, completed_date,initialPayment)
+            VALUES ('$id', '$itemId','$itemquantity', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0, 0, '$initial_payment')";
 
     // Execute the SQL query
     $result = mysqli_query($conn, $sql);

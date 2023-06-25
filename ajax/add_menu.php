@@ -4,7 +4,7 @@
     //unset($_SESSION['cart']);
 
     $express_amount = 0;
-    $item = $_POST['item'];
+    $item = $_POST['item']; 
     $price = $_POST['price'];
     $quantity =  $_POST['quantity'];
     $telephone = $_POST['telephone'];
@@ -14,6 +14,7 @@
     $id = $_POST['id'];
     $express_amount = $_POST['express'];
     $total = 0;
+    $initial_payment = $_POST['initial_payment'];
  
 
 
@@ -28,6 +29,7 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
     $sex = $_POST['sex'];
     $paymentMethod = $_POST['paymentMethod'];
     $express_amount = $_POST['express'];
+    $initial_payment = $_POST['initial_payment'];
     $_SESSION['express'] = $_POST['express'];
 
     $id = $_POST['id'];
@@ -43,6 +45,7 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
         'paymentMethod' => $paymentMethod,
         'id' => $id,
         'express' => $express_amount,
+        'initialPay' => $initial_payment,
 
 
     ];
