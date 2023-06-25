@@ -187,6 +187,7 @@ if (isset($_SESSION['admin']) == 'true') {
                     <a class="nav-link text-white" href="#"><i class="fa-solid fa-user-group"></i><span class="links">customer management</a></span>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href="customers.php"><i class="fa-solid fa-user"></i><span class="links">customers</span></a></li>
+                        <li><a class="nav-link text-white" href="add-customer.php"><i class="fa-solid fa-user"></i><span class="links">Add customers</span></a></li>
                       
                     </ul>
                 </li>
