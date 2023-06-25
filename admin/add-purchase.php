@@ -180,7 +180,7 @@ include_once('../dbconfig/config.php');
         </tbody>
     </table>
 
-    <b><p class="tableTotal">Table Total: <span id="tableTotal">0.00</span></p></b><br>
+   <b><p class="tableTotal">Table Total: <span id="tableTotal" >0.00</span></p></b><br>
     <button type="button" onclick="addRow()" class="addbtn text-white">Add Row</button>
     <!-- Hidden field to store purchase data -->
     <input type="hidden" name="save" value="save">
@@ -192,6 +192,7 @@ include_once('../dbconfig/config.php');
 
 
 if (isset($_POST['save'])) {
+    $total = 0;
     $supplier = $_POST['supplier'];
     $invoice = $_POST['invoice'];
     $receipt = $_POST['receipt'];
@@ -213,8 +214,10 @@ if (isset($_POST['save'])) {
             'unitprice' => $unitPrice[$i],
             'quantity' => $quantity[$i],
         ];
+        $subtotal = $unitPrice[$i] * $quantity[$i];
+        $total += $subtotal;
 
-        $sql = "INSERT INTO purchases (items, unitprice, dates, supplier, invoice, receipt_number, quantity, loggedby) VALUES ('$items[$i]', '$unitPrice[$i]', '$date', '$supplier', '$invoice', '$receipt', '$quantity[$i]', '$loggedby' )";
+        $sql = "INSERT INTO purchases (items, unitprice, dates, supplier, invoice, receipt_number, quantity, loggedby,total) VALUES ('$items[$i]', '$unitPrice[$i]', '$date', '$supplier', '$invoice', '$receipt', '$quantity[$i]', '$loggedby', '$total')";
         $res = mysqli_query($conn, $sql);
 
         if (!$res) {

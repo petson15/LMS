@@ -235,7 +235,7 @@
 
 <?php  
 
-      $completed_daily = "SELECT SUM(price) AS total FROM orderitems WHERE completed =1 AND DATE(order_date) = '$currentDate' ";
+      $completed_daily = "SELECT SUM(price) AS total FROM orderitems WHERE completed =1 AND DATE(completed_date) = '$currentDate' ";
   $completed_daily_sales = mysqli_query($conn, $completed_daily);
 
   if (!$completed_daily_sales) {
