@@ -174,44 +174,50 @@ if (isset($_SESSION['admin']) == 'true') {
         <div class="sidebar card py-4 mb-1 my-5">
             <ul class="nav flex-column text-white" id="nav_accordion" style="padding-top: 55px;">
                 <li class="nav-item ">
-                    <a class="nav-link  text-white" href="dashboard.php"> <i class="fa-brands fa-windows"></i><span class="links">Dashboard</span></a>
+                    <a class="nav-link  text-white" href="dashboard.php"> <i class="fa-brands fa-windows"></i><span class="links ms-1">Dashboard</span></a>
                 </li>
                 <li class="nav-item has-submenu my-2">
-                    <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links">Inventory</span></a>
+                    <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links ms-1">Inventory</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links"> Add purchase</span></a></li>
-                        <li><a class="nav-link text-white" href="today-sales.php"><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links">Today sales</span></a></li>
+                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links ms-1"> Add purchase</span></a></li>
+                        <li><a class="nav-link text-white" href="today-sales.php"><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links ms-1">Today sales</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item has-submenu my-2">
                     <a class="nav-link text-white" href="#"><i class="fa-solid fa-user-group"></i><span class="links">customer management</a></span>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="customers.php"><i class="fa-solid fa-user"></i><span class="links">customers</span></a></li>
-                        <li><a class="nav-link text-white" href="add-customer.php"><i class="fa-solid fa-user"></i><span class="links">Add customers</span></a></li>
+                        <li><a class="nav-link text-white" href="customers.php"><i class="fa-solid fa-user"></i><span class="links ms-1">customers</span></a></li>
+                        <li><a class="nav-link text-white" href="add-customer.php"><i class="fa-solid fa-user"></i><span class="links ms-1">Add customers</span></a></li>
                       
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links">POS</span></a>
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-desktop"></i><span class="links ms-1">POS</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="pos-order.php"><i class="fa-solid fa-desktop"></i><span class="links">POS-order</span></a></li>
-                        <li><a class="nav-link text-white" href="orders.php"><i class="fa-solid fa-desktop"></i><span class="links">My orders</span></a></li>
+                        <li><a class="nav-link text-white" href="pos-order.php"><i class="fa-solid fa-desktop"></i><span class="links ms-1">POS-order</span></a></li>
+                        <li><a class="nav-link text-white" href="orders.php"><i class="fa-solid fa-desktop"></i><span class="links ms-1">My orders</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links">Order management</span></a>
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links ms-1">Order management</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="all-orders.php"><i class="fa-solid fa-list"></i><span class="links">orders</span></a></li>
+                        <li><a class="nav-link text-white" href="all-orders.php"><i class="fa-solid fa-list"></i><span class="links ms-1">orders</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href="menu.php"><i class="fa-solid fa-ellipsis"></i><span class="links">Menu Items</span></a>
+                    <a class="nav-link text-white" href="menu.php"><i class="fa-solid fa-ellipsis"></i><span class="links ms-1">Menu Items</span></a>
+                </li>
+                 <li class="nav-item my-2">
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-solid fa-users"></i><span class="links ms-1">ERP</span></a>
+                    <ul class="submenu collapse">
+                        <li><a class="nav-link text-white" href="employee.php"><i class="fa-solid fa-user-tag"></i><span class="links ms-1">Employees</span></a></li>
+                    </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links">Profile</span></a>
+                    <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links ms-1">Profile</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="change-password.php"><i class="fa-solid fa-lock"></i><span class="links">Change password</span></a></li>
-                        <li><a class="nav-link text-white" href="dashboard.php?action=logout"><i class="fa-solid fa-right-from-bracket"></i><span class="links">Logout</span></a></li>
+                        <li><a class="nav-link text-white" href="change-password.php"><i class="fa-solid fa-lock"></i><span class="links ms-1">Change password</span></a></li>
+                        <li><a class="nav-link text-white" href="dashboard.php?action=logout"><i class="fa-solid fa-right-from-bracket"></i><span class="links ms-1">Logout</span></a></li>
                     </ul>
 
                 </li>

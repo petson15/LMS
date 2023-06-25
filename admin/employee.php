@@ -1,9 +1,7 @@
 <?php  
- 
 	include_once('../dbconfig/config.php');
 
-
-	$sql = "SELECT * FROM customers";
+	$sql = "SELECT * FROM employee";
   	$result = mysqli_query($conn, $sql);
 
   if (!$result) {
@@ -12,60 +10,42 @@
   }
 
 
-  	// Retrieve the latest customer ID from the database
-$customer_tag = "SELECT MAX(id) AS max_id FROM customers";
-$tag_result = mysqli_query($conn, $customer_tag);
-if (!$tag_result) {
-	// code...
-	echo "error in sql" . mysqli_error($conn);
-}
-$row = mysqli_fetch_assoc($tag_result);
-$maxId = $row['max_id'];
+  	if (isset($_POST['add'])) {
+  		// code...
 
-// Increment the customer ID
-$newId = sprintf('%03d', intval($maxId) + 1); 
+  		$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+  		$secondname = mysqli_real_escape_string($conn, $_POST['secondname']);
+  		$DOB = mysqli_real_escape_string($conn, $_POST['DOB']); //date of birth
+  		$telephone = mysqli_real_escape_string($conn, $_POST['telephone']);
+  		$username = mysqli_real_escape_string($conn, $_POST['username']);
+  		$password = mysqli_real_escape_string($conn, $_POST['password']);
 
-	
-	if (isset($_POST['add'])) {
-		// code...
+  		$sql = "INSERT INTO employee(firstname,secondname,DOB,telephone,username,password) VALUES('$firstname', '$secondname', '$DOB', '$telephone', '$username', '$password')";
+  		$res = mysqli_query($conn, $sql);
 
-		$name = mysqli_real_escape_string($conn, $_POST['customername']);
-		$tagnumber = mysqli_real_escape_string($conn, $_POST['tagnumber']);
-		$tel = mysqli_real_escape_string($conn, $_POST['tel']);
-
-		$sql = "INSERT INTO customers(tagnumber,name,telephone) VALUES('$tagnumber', '$name', '$tel')";
-		$res = mysqli_query($conn, $sql);
-
-		if (!$res) {
+  		if (!$res) {
 			// code...
 			echo "error in sql" . mysqli_error($conn);
 		}
-		header('location: add-customer.php ');
-	}
-
-
+		header('location: employee.php ');
+  	}
+	
 	if (isset($_GET['id'])) {
      // code...
     $id = $_GET['id'];
-   $del = "DELETE FROM customers WHERE id = '$id'";
+   $del = "DELETE FROM employee WHERE id = '$id'";
    $del_result = mysqli_query($conn, $del);
 
      if (!$del_result) {
         echo "error in querry". mysqli_error($conn);
       }
 
-    header('location:add-customer.php');
+    header('location:employee.php');
    }
 
 
 
-
-
-
 ?>
-
-
-
 
 
 
@@ -74,12 +54,13 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>LMS || Add customers</title>
+	<title>LMS || employees</title>
+	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
-	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
-	<script type="text/javascript" src="../js/jquery.js"></script>
+      <script type="text/javascript" src="../js/jquery.js"></script>
 
-	<style type="text/css">
+
+      	<style type="text/css">
 		
 		.fa-solid
         {
@@ -99,24 +80,29 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 
 
 	</style>
+
+
 </head>
 <body>
 
-
 	<?php include_once('../includes/navbar.php') ?>
 
-	<h4 class="me-1 my-3 container text-muted ">Customers</h4>
 
-<button style="float: right; margin-right: 280px;" class="btn btn-sm bg-primary text-white"
-        data-bs-whatever="@mdo" data-bs-toggle="modal" data-bs-target="#addcustomer" type="button">Add customer</button>
+	<h4 class="me-1 my-3 container text-muted ">Employees</h4>
+
+
+
+	<button style="float: right; margin-right: 280px;" class="btn btn-sm bg-primary text-white"
+        data-bs-whatever="@mdo" data-bs-toggle="modal" data-bs-target="#addemployee" type="button">Add employee</button>
 
 
 	 <div class="container d-flex justify-content-center sales my-5">
         <table class="table table-bordered text-center fw-lighter" id="order-table">
             <thead class=" text-center fw-lighter">
                 <tr>
-                    <th scope="col" class="fw-lighter">Tagnumber #</th>
-                    <th scope="col" class="fw-lighter">Name</th>
+                    <th scope="col" class="fw-lighter">Firstname</th>
+                    <th scope="col" class="fw-lighter">secondname</th>
+                    <th scope="col" class="fw-lighter">DOB</th>
                     <th scope="col" class="fw-lighter">Telephone</th>
                     <th scope="col" class="fw-lighter">Action</th>
                 </tr>
@@ -128,38 +114,51 @@ $newId = sprintf('%03d', intval($maxId) + 1);
                     while ($rows = mysqli_fetch_assoc($result)) 
                     {
                   ?><tr>
-                      <td scope="col" class="fw-lighter"><?php echo $rows['tagnumber']; ?></td>
-                    <td><?php echo $rows['name']; ?></td>
+                      <td scope="col" class="fw-lighter"><?php echo $rows['firstname']; ?></td>
+                    <td><?php echo $rows['secondname']; ?></td>
+                    <td><?php echo $rows['DOB']; ?></td>
                     <td><?php echo $rows['telephone']; ?></td>
                     <td class="edit_p" id="<?php echo $rows['id']; ?>"><i title="edit" class="fa-solid fa-edit text-primary " 
                     data-bs-whatever="@mdo" type="button"></i> 
                     
-                        <a href="add-customer.php?id=<?php echo $rows['id']; ?>"><i title="delete" class="fa-solid fa-trash text-danger"></i>
+                        <a href="employee.php?id=<?php echo $rows['id']; ?>"><i title="delete" class="fa-solid fa-trash text-danger"></i>
                    </td> 
                    </tr>
-   <div class="modal fade" id="addcustomer" tabindex="-1" aria-labelledby="details" aria-hidden="true">
+   <div class="modal fade" id="addemployee" tabindex="-1" aria-labelledby="details" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="details">Add customer</h1>
+        <h1 class="modal-title fs-5" id="details">Add employee</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="add-customer.php">
+        <form method="POST" action="employee.php">
           <div class="mb-3">
-            <label for="item-name" class="col-form-label">Customer Name:</label>
-            <input type="text" class="form-control" required name="customername">
+            <label for="firstname" class="col-form-label">FirstName:</label>
+            <input type="text" class="form-control" required name="firstname">
           </div>
           <div class="mb-3">
-            <label for="Price" class="col-form-label">Tagnumber:</label>
-            <input type="number" class="form-control" readonly required name="tagnumber" value="<?php echo $newId ?>"> 
+            <label for="secondname" class="col-form-label">SecondName:</label>
+            <input type="text" class="form-control" required name="secondname"> 
+          </div>
+           <div class="mb-3">
+            <label for="DOB" class="col-form-label">DOB:</label>
+            <input type="date" class="form-control" required name="DOB"> 
           </div>
           <div class="mb-3">
-            <label for="tel" class="col-form-label">Telephone:</label>
-            <input type="tel" class="form-control" required name="tel"> 
+            <label for="telephone" class="col-form-label">Telephone:</label>
+            <input type="tel" class="form-control" required name="telephone"> 
+          </div>
+          <div class="mb-3">
+            <label for="usernmae" class="col-form-label">Username:</label>
+            <input type="tel" class="form-control" required name="username"> 
+          </div>
+           <div class="mb-3">
+            <label for="password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" required name="password"> 
           </div>
           <div class="modal-footer justify-content-center" style=" margin: 10px" >
-        <button type="submit" name = "add" class="btn btn-primary">Add customer</button>
+        <button type="submit" name = "add" class="btn btn-primary">Add Employee</button>
       </div>
         </form>
       </div>
@@ -170,7 +169,7 @@ $newId = sprintf('%03d', intval($maxId) + 1);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="details">Update customer</h1>
+        <h1 class="modal-title fs-5" id="details">Update Employee</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body load_edit_info">
@@ -183,6 +182,8 @@ $newId = sprintf('%03d', intval($maxId) + 1);
   </div>
 </div>
 
+
+
                    <?php  } ?>
                    
                 
@@ -192,8 +193,7 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 <?php ?>
 
 
-
-		 <script type="text/javascript">
+<script type="text/javascript">
         
 
 
@@ -208,7 +208,7 @@ $newId = sprintf('%03d', intval($maxId) + 1);
                 $("#edit").modal("show");
                  
                   $.ajax({
-                    url: "../ajax/load_customer_edit.php",
+                    url: "../ajax/load_employee_edit.php",
                     method: "POST",
                   //  dataType: "JSON",
                     data: {id},
@@ -227,16 +227,19 @@ $newId = sprintf('%03d', intval($maxId) + 1);
                 e.preventDefault();
 
                 let id = $(this).attr("id");
-                let name = $("#customer_name_p").val();
-                let telephone = $("#customer_telephone"+id).val();
+                let firstname = $("#firstname_name_p").val();
+                let secondname = $("#second_name_p").val();
+                let DOB = $("#DOB").val();
+                let telephone = $("#telephone").val();
+                let username = $("#username"+id).val();
 
              
 
                    $.ajax({
-                    url: "../ajax/update_customer.php",
+                    url: "../ajax/update_employee.php",
                     method: "POST",
                   //  dataType: "JSON",
-                    data: {id,name,telephone},
+                    data: {id,firstname,secondname,DOB,telephone,username},
                     success:function(data){
                         $(".load_edit_info").html(data);
 
@@ -246,6 +249,8 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 
         })
     </script>
+
+
 
 
 
