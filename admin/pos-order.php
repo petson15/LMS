@@ -229,8 +229,8 @@ if (!$res) {
                 </div>
                 <div class="modal-body">
                     <div class="mb-3" style="overflow: auto;">
-                        <input type="search" name="search" class="search" placeholder="Search item" style="width: 100%">
-                        <table style="margin: 20px auto; border-collapse: collapse; padding: 200px;" class="table table-striped">
+                        <input type="text" name="search" class="search" placeholder="Search item" style="width: 100%" id="searchInput" onkeyup="searchItems()">
+                        <table style="margin: 20px auto; border-collapse: collapse; padding: 200px;" class="table table-striped" id="itemTable">
                             <thead>
                                 <th>Item</th>
                                 <th>Quantity</th>
@@ -312,6 +312,27 @@ if (!$res) {
   </div>
 </div>
 
+<script type="text/javascript">
+    function searchItems() {
+  // Get the search input value
+  var searchValue = document.getElementById('searchInput').value.toLowerCase();
+
+  // Get all rows in the table
+  var rows = document.getElementById('itemTable').rows;
+
+  // Loop through each row and hide/show based on the search input
+  for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip the table header row
+    var item = rows[i].cells[0].innerHTML.toLowerCase(); // Get the item name from the first cell
+
+    if (item.indexOf(searchValue) > -1) {
+      rows[i].style.display = ''; // Show the row if the search value matches
+    } else {
+      rows[i].style.display = 'none'; // Hide the row if the search value does not match
+    }
+  }
+}
+
+</script>
 
             
 </body>

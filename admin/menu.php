@@ -2,7 +2,7 @@
   
   include_once('../dbconfig/config.php');
 
-
+ 
   
 
   $page = 1;
@@ -15,10 +15,14 @@
   $start_from = ($page - 1) * 12;
 $num_per_page = 12;
 
+  $searchValue = '';
+if (isset($_GET['search'])) {
+    $searchValue = $_GET['search'];
+}
 
 
 
-$sql = "SELECT * FROM menu LIMIT $start_from, $num_per_page ";
+$sql = "SELECT * FROM menu WHERE item LIKE '%$searchValue%' LIMIT $start_from, $num_per_page ";
   $result = mysqli_query($conn, $sql);
 
   if (!$result) {
@@ -26,7 +30,7 @@ $sql = "SELECT * FROM menu LIMIT $start_from, $num_per_page ";
     echo "<script>alert('error in sql')</script>";
   }
 
-$total_rows_sql = "SELECT COUNT(item) AS total FROM menu";
+$total_rows_sql = "SELECT COUNT(item) AS total FROM menu WHERE item LIKE '%$searchValue%'";
 $total_rows_result = mysqli_query($conn, $total_rows_sql);
 $total_rows_row = mysqli_fetch_assoc($total_rows_result);
 $total_rows = $total_rows_row['total'];
@@ -74,7 +78,6 @@ $total_pages = ceil($total_rows / $num_per_page);
     <title>LMS || Menu </title>
       <link rel="website icon" type="png" href="../avatars/logobs.png">
     <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
-  <script type="" src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../fonts/all.css">
       <script type="text/javascript" src="../js/jquery.js"></script>
 
@@ -101,6 +104,15 @@ $total_pages = ceil($total_rows / $num_per_page);
     bottom: 50px;
   }
 
+   #searchInput {
+            float: right;
+            display: flex;
+            position: relative;
+            top: 5px;
+            right: 120px;
+            outline: none;
+        }
+
     </style>
 
 </head>
@@ -117,7 +129,11 @@ $total_pages = ceil($total_rows / $num_per_page);
     </div>
 
     <h4 class="me-1 my-3 container text-muted ">Menu Items</h4>
-        <button style="float: right; margin-right: 120px;" class="btn btn-sm bg-primary text-white"
+
+
+
+        <input type="text" name="search" class="search" placeholder="Search" id="searchInput" value="<?php echo $searchValue; ?>" onkeyup="startSearchTimer()">
+        <button style="float: right; margin-right: 130px;" class="btn btn-sm bg-primary text-white"
         data-bs-whatever="@mdo" data-bs-toggle="modal" data-bs-target="#additem" type="button">Add item</button>
 
     <div class="container d-flex justify-content-center sales my-5">
@@ -263,6 +279,20 @@ $total_pages = ceil($total_rows / $num_per_page);
                })
 
         })
+
+
+         var searchTimer;
+
+        function startSearchTimer() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(performSearch, 500); // Adjust the delay here (in milliseconds)
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            window.location.href = 'menu.php?search=' + encodeURIComponent(searchValue);
+        }
+
     </script>
     
 </body>

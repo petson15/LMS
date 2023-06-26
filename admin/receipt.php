@@ -44,17 +44,16 @@ if (!$search_result) {
 	<style type="text/css">
 		p 
 		{
-			font-size:13px;
+			font-size:12px;
 		}
 	</style>
 </head>
 <body>
 
-<img src="../avatars/logobs.png" style="width: 150px; height: 120px;" class="ms-5 my-3">
+<img src="../avatars/logobs.png" style="width: 150px; height: 90px;" class="ms-5 my-3">
 
 <div class="ms-4 my-3">
 	
-<p>For Enquiries call -Philip: 0201482964</p>
 <p>busrtcleanlaundry@gmail.com</p>
 <b><P>Address: Occansey Adjacent Presec Basic</P></b>
 <b><p>Invoice ID: <?php echo $row['order_id'] ?></p></b>
@@ -107,7 +106,18 @@ if (!$search_result) {
 	<b><p style="margin-left:77px; margin-bottom: 20px;">Amount Due: <?php echo $row['total'] -$row['initialPayment'] ?></p></b>
 
 
-	<p><b>Disclaimer:</b></p>
+	<small>Disclaimer:</small><br>
+	<small>1-clothes not claimed after 3 months</small><br>
+	<small>will be disposed by management</small><br>
+	<small>2-Management will not bear</small><br>
+	<small>responsibility for weak and inferior</small><br>
+	<small>fabric</small><br>
+	<small>3-Damages paid for clothes shall not</small><br>
+	<small>exceed 10times the charge</small><br>
+	<small>4-customers are mandated to ensure that their</small><br>
+	<small>items are complete and accuratly returned to</small><br>
+	<small>them before leaving the receiving desk</small><br><br>
+	<p>For Enquiries and complaints call Philip: 0201482964</p>
 
 	<small style="font-size:12px"><b>THANKS FOR YOU PATRONAGE</b></small><br>
 	<small style="font-size:12px"><b>powered by PETSON</b></small>

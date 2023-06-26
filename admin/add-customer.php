@@ -3,13 +3,30 @@
 	include_once('../dbconfig/config.php');
 
 
-	$sql = "SELECT * FROM customers";
+  $searchValue = '';
+if (isset($_GET['search'])) {
+    $searchValue = $_GET['search'];
+}
+
+
+	$sql = "SELECT * FROM customers  WHERE name LIKE '%$searchValue%'";
   	$result = mysqli_query($conn, $sql);
 
   if (!$result) {
     // code...
     echo "<script>alert('error in sql')</script>";
   }
+
+$page = 1;
+
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+}
+
+
+$num_per_page = 12;
+$start_from = ($page - 1) * $num_per_page;
+
 
 
   	// Retrieve the latest customer ID from the database
@@ -58,7 +75,11 @@ $newId = sprintf('%03d', intval($maxId) + 1);
    }
 
 
-
+$total_rows_sql = "SELECT COUNT(DISTINCT telephone) AS total FROM customers WHERE name LIKE '%$searchValue%'";
+$total_rows_result = mysqli_query($conn, $total_rows_sql);
+$total_rows_row = mysqli_fetch_assoc($total_rows_result);
+$total_rows = $total_rows_row['total'];
+$total_pages = ceil($total_rows / $num_per_page);
 
 
 
@@ -96,6 +117,22 @@ $newId = sprintf('%03d', intval($maxId) + 1);
         font-size: 13px;
 
       }
+       #searchInput {
+            float: right;
+            display: flex;
+            position: relative;
+            top: 5px;
+            right: 280px;
+            outline: none;
+        }
+
+         .btnlink  {
+            position: relative;
+            left: 280px;
+            margin: 2px;
+            bottom: 34px;
+        }
+
 
 
 	</style>
@@ -107,7 +144,9 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 
 	<h4 class="me-1 my-3 container text-muted ">Customers</h4>
 
-<button style="float: right; margin-right: 280px;" class="btn btn-sm bg-primary text-white"
+
+<input type="text" name="search" class="search" placeholder="Search" id="searchInput" value="<?php echo $searchValue; ?>" onkeyup="startSearchTimer()">
+<button style="float:left; margin-left: 61%;" class="btn btn-sm bg-primary text-white"
         data-bs-whatever="@mdo" data-bs-toggle="modal" data-bs-target="#addcustomer" type="button">Add customer</button>
 
 
@@ -191,6 +230,24 @@ $newId = sprintf('%03d', intval($maxId) + 1);
     </div>
 <?php ?>
 
+ <?php
+    if ($page > 1) {
+        echo "<a class='btn-sm btn btn-primary btnlink text-primary bg-light' href='add-customer.php?page=".($page-1)."'>Previous</a>";
+    }
+
+    for ($i = 1; $i <= $total_pages; $i++) {
+        echo "<a class='btn-sm btn btn-primary btnlink  text-primary bg-light' href='add-customer.php?page=$i'>$i</a>";
+    }
+
+    if ($page < $total_pages) {
+        echo "<a class='btn btn-sm btn-primary btnlink  text-primary bg-light' href='add-customer.php?page=".($page+1)."'>Next</a>";
+    }
+
+    if (isset($_GET['id'])) {
+        $_SESSION['orderID'] = $_GET['id'];
+        echo "<script>window.location.href='add-customer.php'</script>";
+    }
+    ?>
 
 
 		 <script type="text/javascript">
@@ -257,6 +314,21 @@ $newId = sprintf('%03d', intval($maxId) + 1);
                })
 
         })
+
+
+           var searchTimer;
+
+        function startSearchTimer() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(performSearch, 500); // Adjust the delay here (in milliseconds)
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            window.location.href = 'add-customer.php?search=' + encodeURIComponent(searchValue);
+        }
+
+
     </script>
 
 

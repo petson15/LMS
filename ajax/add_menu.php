@@ -2,30 +2,31 @@
 
     session_start();
     //unset($_SESSION['cart']);
+    include_once('../dbconfig/config.php');
 
     $express_amount = 0;
-    $item = $_POST['item']; 
-    $price = $_POST['price'];
-    $quantity =  $_POST['quantity'];
-    $telephone = $_POST['telephone'];
-    $customerName = $_POST['customerName'];
-    $sex = $_POST['sex'];
-    $paymentMethod = $_POST['paymentMethod'];
-    $id = $_POST['id'];
-    $express_amount = $_POST['express'];
+    $item = mysqli_escape_string($conn, $_POST['item']); 
+    $price = mysqli_escape_string($conn, $_POST['price']);
+    $quantity =  mysqli_escape_string($conn, $_POST['quantity']);
+    $telephone = mysqli_escape_string($conn, $_POST['telephone']);
+    $customerName = mysqli_escape_string($conn, $_POST['customerName']);
+    $sex = mysqli_escape_string($conn, $_POST['sex']);
+    $paymentMethod = mysqli_escape_string($conn, $_POST['paymentMethod']);
+    $id = mysqli_escape_string($conn, $_POST['id']);
+    $express_amount = mysqli_escape_string($conn, $_POST['express']);
     $total = 0;
-    $initial_payment = $_POST['initial_payment'];
+    $initial_payment = mysqli_escape_string($conn,$_POST['initial_payment']);
  
 
 
  
 
 if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])) {
-    $item = $_POST['item'];
+    $item = mysqli_escape_string($conn, $_POST['item']); 
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $telephone = $_POST['telephone'];
-    $customerName = $_POST['customerName']; 
+    $telephone = mysqli_escape_string($conn, $_POST['telephone']);
+    $customerName = mysqli_escape_string($conn, $_POST['customerName']); 
     $sex = $_POST['sex'];
     $paymentMethod = $_POST['paymentMethod'];
     $express_amount = $_POST['express'];

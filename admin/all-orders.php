@@ -4,12 +4,12 @@
 
 
 	$page = 1;
-if (isset($_GET['page'])) {
+if (isset($_GET['page'])) { 
 	// code...
 	$page = $_GET['page']; 
 }
 else
-{ 
+{  
 	$page = 1;
 }
 $start_from =0;
@@ -17,10 +17,14 @@ $start_from =0;
 $num_per_page = 12;
 $start_from = ($page - 1) * 12;
 
+$searchValue = '';
+if (isset($_GET['search'])) {
+    $searchValue = $_GET['search'];
+}
 
 
 $sql = "SELECT DISTINCT order_id, order_date, servedby,id, paymethod, total, telephone, customer,initialPayment
-        FROM orderitems
+        FROM orderitems WHERE customer LIKE '%$searchValue%' OR telephone LIKE '%$searchValue%' OR paymethod LIKE '%$searchValue%' OR order_id LIKE '%$searchValue%' 
         GROUP BY order_id DESC
         LIMIT $start_from, $num_per_page";
 $res = mysqli_query($conn, $sql);
@@ -68,6 +72,16 @@ if (!$res) {
    			bottom: 34px;
    		}
 
+   		 #searchInput 
+   		 {
+            float: right;
+            display: flex;
+            position: relative;
+            top: -5px;
+            right: 20px;
+            outline: none;
+        }
+
 	</style>
 
 </head>
@@ -77,7 +91,7 @@ if (!$res) {
 	<?php include_once('../includes/navbar.php'); 
 
 
-$total_rows_sql = "SELECT COUNT(DISTINCT order_id) AS total FROM orderitems";
+$total_rows_sql = "SELECT COUNT(DISTINCT order_id) AS total FROM orderitems WHERE customer LIKE '%$searchValue%' OR telephone LIKE '%$searchValue%' OR paymethod LIKE '%$searchValue%' OR order_id LIKE '%$searchValue%' ";
 $total_rows_result = mysqli_query($conn, $total_rows_sql);
 $total_rows_row = mysqli_fetch_assoc($total_rows_result);
 $total_rows = $total_rows_row['total'];
@@ -88,7 +102,7 @@ $total_pages = ceil($total_rows/$num_per_page);
 	<div class="container"><h4 style=" margin:30px; color: grey; margin-left: 1px;">Order Management</h4></div>
 
 	<div class="container">
-
+		<input type="text" name="search" class="search" placeholder="Search" id="searchInput" value="<?php echo $searchValue; ?>" onkeyup="startSearchTimer()">
 		<table class="table table-bordered fw-semilight my-5">
 
   <thead>
@@ -122,7 +136,7 @@ $total_pages = ceil($total_rows/$num_per_page);
       <td>GHC <?php echo $rows['total'] - $rows['initialPayment'] ?></td>
       <td><?php echo $rows['order_date']; ?>  </td>
       <td><?php echo $rows['servedby']; ?>  </td>
-      <td ><a href="orders.php?id=<?php echo $rows['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-4 text-primary"></i></a></td>
+      <td ><a href="orders.php?id=<?php echo $rows['id']; ?>"><i title = "print" class="fa-solid fa-eye ms-3 text-primary"></i></a></td>
     </tr>
   </tbody>	
 <?php } ?>
@@ -164,6 +178,20 @@ $total_pages = ceil($total_rows/$num_per_page);
 
 ?>
 
+
+ <script type="text/javascript">
+             var searchTimer;
+
+        function startSearchTimer() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(performSearch, 500); // Adjust the delay here (in milliseconds)
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            window.location.href = 'all-orders.php?search=' + encodeURIComponent(searchValue);
+        }
+    </script>
 
 </body>
 </html>
