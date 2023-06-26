@@ -62,7 +62,7 @@
 
 
 	<div class="container my-5">
-		<a href="order-details.php?id=<?php echo "string"; ?>"><button class="btn btn-md btn-secondary btnPrint text-white" type="button" style="float: right;">Print</button></a>
+		<a href="order-details.php?id=<?php echo $id; ?>"><button class="btn btn-md btn-secondary btnPrint text-white" type="button" style="float: right;">Print</button></a>
 		<h6>Customer Name: <b><?php echo $fetch['customer']; ?></b></h6>
 		<h6>Customer Tel: <b><?php echo $fetch['telephone']; ?></b></h6>
 		<h6>Payment Method: <b><?php echo $fetch['paymethod']; ?></b></h6>
@@ -99,7 +99,18 @@
     <?php } ?>
   </tbody>
 
+<?php  
 
+	if (isset($_GET['id'])) {
+		// code...
+		$_SESSION['uniqueID'] = $_GET['id'];
+
+		echo "<script>window.location.href='receipt.php'</script>";
+	}
+
+
+
+?>
 
 
 	</div>

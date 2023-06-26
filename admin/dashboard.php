@@ -178,7 +178,7 @@
 
        <?php  
 
-    $customer_count = "SELECT COUNT(DISTINCT telephone) AS total_customers FROM orderitems";
+    $customer_count = "SELECT COUNT(DISTINCT telephone) AS total_customers FROM customers";
     $customer_result = mysqli_query($conn, $customer_count);
 
     if (!$customer_result) {
@@ -484,6 +484,118 @@ if ($totalCustomers > 0) {
 
 
 
+
+<?php
+$currentDate = date('Y-m-d');
+$weekStartDate = date('Y-m-d', strtotime('-7 days'));
+$monthStartDate = date('Y-m-d', strtotime('-30 days'));
+
+// Calculate average customers per day
+$sql = "SELECT COUNT(DISTINCT order_id) AS totalOrders FROM orderitems";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalOrders = $row['totalOrders'];
+
+$averageCustomersPerDay = $totalOrders; // Since it's already per day
+
+// Calculate average customers per week
+$sql = "SELECT COUNT(DISTINCT order_id) AS totalOrders FROM orderitems WHERE order_date >= '$weekStartDate' AND order_date <= '$currentDate'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalOrdersPerWeek = $row['totalOrders'];
+
+$numberOfDaysInWeek = 7;
+$averageCustomersPerWeek = $totalOrdersPerWeek / $numberOfDaysInWeek;
+
+// Calculate average customers per month
+$sql = "SELECT COUNT(DISTINCT order_id) AS totalOrders FROM orderitems WHERE order_date >= '$monthStartDate' AND order_date <= '$currentDate'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalOrdersPerMonth = $row['totalOrders'];
+
+$numberOfDaysInMonth = 30;
+$averageCustomersPerMonth = $totalOrdersPerMonth / $numberOfDaysInMonth;
+
+
+
+
+
+
+
+
+
+?>
+
+
+<div class="my-5 tab">
+
+    <table class="table table-bordered fw-semilight ms-3 tab-1">
+  <thead>
+    <tr>
+      <th scope="col">Average customers</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Per Day</td>
+      <td><?php echo  $averageCustomersPerDay?></td>
+    </tr>
+    <tr>
+      <td>Per Week</td>
+      <td><?php echo  $averageCustomersPerWeek  ?></td>
+    </tr>
+    <tr>
+      <td>Per Month</td>
+      <td><?php echo  $averageCustomersPerMonth?></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+    <table class="table table-bordered fw-semilight ms-5 tab-2">
+  <thead>
+    <tr>
+      <th colspan="3">Top ten customers with highest spending</th>
+    </tr>
+    <tr>
+      <th scope="col">Customer</th>
+      <th scope="col">Total spending</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $sql = "SELECT telephone,customer, SUM(price) AS total_spending FROM orderitems GROUP BY customer ORDER BY total_spending DESC LIMIT 10";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+  // code...
+  echo "error in sql" . mysqli_error($conn);
+}
+
+        while ($row = mysqli_fetch_assoc($result)) {
+          // code...
+        
+
+     ?>
+
+    <tr>
+      <td><?php  echo $row['customer']  ?></td>
+      <td><?php  echo $row['total_spending'] ?></td>
+    </tr>
+  </tbody>
+<?php } ?>
+</table>
+  
+
+  </div>
+
+
+
+
+
 <div class="dash-info my-5">
    <div class="item-count my-3 ms-5 me-5 first-col" style="background-color:white;">
       <div>
@@ -508,9 +620,6 @@ if ($totalCustomers > 0) {
       </div>
     </div>
 </div>
-
-
-
 
 </body>
 

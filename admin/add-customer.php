@@ -159,7 +159,7 @@ $newId = sprintf('%03d', intval($maxId) + 1);
             <input type="tel" class="form-control" required name="tel"> 
           </div>
           <div class="modal-footer justify-content-center" style=" margin: 10px" >
-        <button type="submit" name = "add" class="btn btn-primary">Add customer</button>
+        <button type="submit" name = "add" class="btn addbtn btn-primary">Add customer</button>
       </div>
         </form>
       </div>
@@ -196,6 +196,18 @@ $newId = sprintf('%03d', intval($maxId) + 1);
 		 <script type="text/javascript">
         
 
+          $(document).ready(function() {
+
+      $(".addbtn").click(function() {
+
+        let tel = $("input[name ='tel']").val();
+
+        if (tel.length != 10) {
+          $("#myModal").modal("show");
+          return false;
+        }
+      })
+    });
 
 
 
@@ -248,6 +260,22 @@ $newId = sprintf('%03d', intval($maxId) + 1);
     </script>
 
 
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">ERROR IN FORM</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-danger">
+        Incorrect telephone number
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>

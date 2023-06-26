@@ -7,28 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    <style type="text/css">
-        .modals {
-      display: none;
-      position: fixed; 
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
     
-    .modal-contents { 
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 40px;
-      border: 1px solid #888;
-      width: 550px;
-      text-align: center;
-    }
-    </style>
 
 </head>
 <body>
@@ -65,8 +44,9 @@ foreach ($_SESSION['cart'] as $item) {
 
     if (!$result) {
         // Error occurred during insertion
-         echo "error in sql" . mysqli_error($conn);
-        exit;
+          $errorMessage = "Error in SQL: " . mysqli_error($conn);
+    echo "error in sql " . mysqli_error($conn);
+    exit;
     }
     else
     {
