@@ -143,7 +143,7 @@
     </div>
     <?php  
       $currentDate = date('Y-m-d');
-      $sales_Sum = "SELECT SUM(price) AS sales_total FROM orderitems WHERE DATE(completed_date) = '$currentDate'";
+      $sales_Sum = "SELECT SUM(DISTINCT Amount_due) AS sales_total FROM orderitems WHERE DATE(completed_date) = '$currentDate' AND completed=1";
       $sales_result = mysqli_query($conn, $sales_Sum);
 
       if (!$sales_result) {

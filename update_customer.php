@@ -1,7 +1,7 @@
 <?php 
 
   
-  include_once('../dbconfig/config.php');
+  include_once('./dbconfig/config.php');
 
   $id = $_POST['id'];
  
@@ -22,7 +22,7 @@
   }
 
 
-  echo "<script>window.location.href='add-customer.php'</script>";
+  echo "<script>window.location.href='add-customers.php'</script>";
 
  
 

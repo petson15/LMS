@@ -1,6 +1,6 @@
 <?php  
   
-  include_once('../dbconfig/config.php');
+  include_once('./dbconfig/config.php');
 
  
    $id = $_POST['id'];

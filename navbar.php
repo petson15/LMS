@@ -1,30 +1,34 @@
 <?php  
-session_start();
+	session_start();
+	 include_once('./dbconfig/config.php');
+
+if (isset($_SESSION['employee']) == 'true') {
+	// code...
 
 
-if (isset($_SESSION['admin']) == 'true') {
-    // code...
 
 
- 
- 
+
 ?>
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
-
-	<script type="" src="../js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
+	<link rel="stylesheet" type="text/css" href="./bootstrap/bootstrap.css">
+	<script type="" src="./js/bootstrap.bundle.min.js"></script>
+	<link rel="website icon" type="png" href="./avatars/logobs.png">
+	<link rel="stylesheet" type="text/css" href="./fonts/all.css">
 	<title></title>
 
-    <script type="text/javascript">
-    </script>
-
-	<style type="text/css">
+		<style type="text/css">
 		body
 		{
 			font-family: sans-serif;
@@ -101,14 +105,14 @@ if (isset($_SESSION['admin']) == 'true') {
 
 
 
+
 </head>
 <body>
 
 
-
-		<nav class="navbar navbar navbar-expand-lg navbar-dark push-nav">
+	<nav class="navbar navbar navbar-expand-lg navbar-dark push-nav">
         <div class="container-fluid">
-            <a class="navbar-brand ms-4" href="../admin/dashboard.php"><img src="../avatars/logobs.png" style=" height: 30px; width: 30px;"></a>
+            <a class="navbar-brand ms-4" href="../admin/dashboard.php"><img src="./avatars/logobs.png" style=" height: 30px; width: 30px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -118,27 +122,13 @@ if (isset($_SESSION['admin']) == 'true') {
                         <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../order screen/order-screen.php" target="_blank">order screen</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Inventory
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="purchase.php">Add Purchase</a></li>
-                              <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="today-sales.php">Today sales</a></li>
-                          
-
-                        </ul>
+                        <a class="nav-link text-white" href="./order screen/order-screen.php" target="_blank">order screen</a>
                     </li>
                 </ul>
                 <form class="d-flex me-4" role="search" >
                     <div class="dropdown"  >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                            <img src="../avatars/avatar.jpeg"  style=" height: 25px; width: 25px; border-radius: 50%; ">
+                            <img src="./avatars/avatar.jpeg"  style=" height: 25px; width: 25px; border-radius: 50%; ">
                         </a>
 
                         <ul class="dropdown-menu ">
@@ -149,7 +139,7 @@ if (isset($_SESSION['admin']) == 'true') {
                             <li><a class="dropdown-item" href="dashboard.php?action=logout">Logout</a></li>
                         </ul>
                     </div>
-                    <span class=" text-white"><small class="ms-"><?php echo $_SESSION['user']; ?></small></span>
+                    <span class=" text-white"><small class="ms-"><?php echo $_SESSION['employee']; ?></small></span>
                 </form>
             </div>
         </div>
@@ -162,7 +152,7 @@ if (isset($_SESSION['admin']) == 'true') {
             if ($_GET['action'] == 'logout') {
                 // code...
                 session_destroy();
-                echo "<script>window.location.href='../login/login.php'</script>";
+                echo "<script>window.location.href='./login/login.php'</script>";
             }
         }
 
@@ -177,17 +167,10 @@ if (isset($_SESSION['admin']) == 'true') {
                     <a class="nav-link  text-white" href="dashboard.php"> <i class="fa-brands fa-windows"></i><span class="links ms-1">Dashboard</span></a>
                 </li>
                 <li class="nav-item has-submenu my-2">
-                    <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links ms-1">Inventory</span></a>
-                    <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links ms-1"> Add purchase</span></a></li>
-                        <li><a class="nav-link text-white" href="today-sales.php"><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links ms-1">Today sales</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-item has-submenu my-2">
                     <a class="nav-link text-white" href="#"><i class="fa-solid fa-user-group"></i><span class="links">customer management</a></span>
                     <ul class="submenu collapse">
                         <li><a class="nav-link text-white" href="customers.php"><i class="fa-solid fa-user"></i><span class="links ms-1">customers</span></a></li>
-                        <li><a class="nav-link text-white" href="add-customer.php"><i class="fa-solid fa-user"></i><span class="links ms-1">Add customers</span></a></li>
+                        <li><a class="nav-link text-white" href="add-customers.php"><i class="fa-solid fa-user"></i><span class="links ms-1">Add customers</span></a></li>
                       
                     </ul>
                 </li>
@@ -199,19 +182,7 @@ if (isset($_SESSION['admin']) == 'true') {
                     </ul>
                 </li>
                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-bars"></i><span class="links ms-1">Order management</span></a>
-                    <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="all-orders.php"><i class="fa-solid fa-list"></i><span class="links ms-1">orders</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-item my-2">
                     <a class="nav-link text-white" href="menu.php"><i class="fa-solid fa-ellipsis"></i><span class="links ms-1">Menu Items</span></a>
-                </li>
-                 <li class="nav-item my-2">
-                    <a class="nav-link text-white" href=""><i class="fa-solid fa-solid fa-users"></i><span class="links ms-1">ERP</span></a>
-                    <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="employee.php"><i class="fa-solid fa-user-tag"></i><span class="links ms-1">Employees</span></a></li>
-                    </ul>
                 </li>
                 <li class="nav-item my-2">
                     <a class="nav-link text-white" href=""><i class="fa-solid fa-user"></i><span class="links ms-1">Profile</span></a>
@@ -264,14 +235,22 @@ if (isset($_SESSION['admin']) == 'true') {
         // DOMContentLoaded  end
     </script>
 
-<?php } 
 
-else
-{
-    echo "<script>window.location.href='../login/login.php'</script>";
-}
+<?php  
+
+	}
+
+	else{
+		echo "<script>window.location.href='./login/login.php'</script>";
+	}
+
+
 
 
 ?>
+
+
+
+
 </body>
 </html>

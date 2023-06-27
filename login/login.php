@@ -42,6 +42,34 @@
       	$error = "invalid credentials";
       }
 
+      $sql = "SELECT * FROM employee WHERE username = '$username' AND password = '$password'";
+		$query = mysqli_query($conn, $sql);
+
+
+			if (!$query) {
+				// code...
+				echo "error in sql". mysqli_connect_error($conn);
+			}
+		
+		 if (mysqli_num_rows($query) == 1) {
+          // code...
+            $_SESSION['employee'] = 'true';
+            
+
+            while($rows = mysqli_fetch_assoc($query))
+            {
+              $user = $rows['username'];
+              $_SESSION['employee'] = $user;
+            }
+
+
+          header('Location: ../dashboard.php');
+      }
+      else
+      {
+      	$error = "invalid credentials";
+      }
+
 
 
 	}

@@ -49,7 +49,8 @@ include_once('../dbconfig/config.php');
   <thead>
     <tr>
       <th scope="col">Employee</th>
-      <th scope="col">Amount</th>
+      <th scope="col">completed sales</th>
+      <th scope="col">Total</th>
       
 
     </tr>
@@ -58,8 +59,13 @@ include_once('../dbconfig/config.php');
   	<?php  
 
   	$currentDate = date('Y-m-d');
-  	$sql = "SELECT DISTINCT servedby, SUM(price) AS total FROM orderitems WHERE completed = 1 AND DATE(completed_date) = '$currentDate' GROUP BY servedby";
-  	$res = mysqli_query($conn, $sql);
+      $query = "SELECT servedby,initialPayment,
+                 SUM(DISTINCT Amount_due) AS total_sum
+          FROM orderitems
+          WHERE DATE(completed_date) = '$currentDate' AND completed = 1
+          GROUP BY servedby";
+  	//$sql = "SELECT DISTINCT servedby, SUM(price) AS total FROM orderitems WHERE completed = 1 AND DATE(completed_date) = '$currentDate' GROUP BY servedby";
+  	$res = mysqli_query($conn, $query);
 
   	if (!$res) {
   		// code...
@@ -68,31 +74,63 @@ include_once('../dbconfig/config.php');
 
   	while ($row = mysqli_fetch_assoc($res)) {
   		// code...
-  	$sql = "SELECT servedby, SUM(initialPayment) AS initialPaymentSum
-        FROM (
-          SELECT servedby, MAX(initialPayment) AS initialPayment
-          FROM orderitems
-          WHERE DATE(order_date) = '$currentDate'
-          GROUP BY servedby, initialPayment
-        ) AS subquery
-        GROUP BY servedby";
-
-
-        $res = mysqli_query($conn,$sql);
-        $initial_sum = mysqli_fetch_assoc($res);
+  	
   
   	?>
     <tr >
       <td><?php echo $row['servedby'] ?></td>
-      <td><?php echo $row['total'] + $initial_sum['initialPaymentSum'] ?></td>
+      <td><?php echo  $row['total_sum'] ?></td>
+      <td><?php echo  $row['total_sum'] ?></td>
+
     </tr>
-    <tr>
-      <td>Total</td>
-      <td><?php echo $row['total'] + $initial_sum['initialPaymentSum']?></td>
-    </tr>
-    
+        <?php } ?>
   </tbody>
-<?php } ?>
+
+</table>
+
+
+
+<table class="table table-bordered fw-semilight ms-1 tab-1 ms-5 me-1">
+  <thead>
+    <tr>
+      <th scope="col">Employee</th>
+      <th scope="col">initial sales received</th>
+      <th scope="col">Total</th>
+      
+
+    </tr>
+  </thead>
+  <tbody >
+    <?php  
+
+    $currentDate = date('Y-m-d');
+      $query = "SELECT DISTINCT initialPayment,servedby,order_id,
+                 SUM(DISTINCT initialPayment) AS initial_sum
+          FROM orderitems
+          WHERE DATE(order_date) = '$currentDate'
+          GROUP BY servedby";
+    //$sql = "SELECT DISTINCT servedby, SUM(price) AS total FROM orderitems WHERE completed = 1 AND DATE(completed_date) = '$currentDate' GROUP BY servedby";
+    $res = mysqli_query($conn, $query);
+
+    if (!$res) {
+      // code...
+      echo "error in sql" . mysqli_error($conn);
+    }
+
+    while ($row = mysqli_fetch_assoc($res)) {
+      // code...
+    
+  
+    ?>
+    <tr >
+      <td><?php echo $row['servedby'] ?></td>
+      <td>GHC <?php echo  $row['initial_sum'] ?></td>
+      <td>GHC <?php echo  $row['initial_sum'] ?></td>
+
+    </tr>
+        <?php } ?>
+  </tbody>
+
 </table>
 </div>
 
