@@ -9,7 +9,8 @@ if (isset($_GET['search'])) {
 }
 
 
-	$sql = "SELECT * FROM customers  WHERE name LIKE '%$searchValue%'";
+	$sql = "SELECT * FROM customers WHERE name LIKE '%$searchValue%' OR tagnumber LIKE '%$searchValue%' ORDER BY tagnumber ASC";
+
   	$result = mysqli_query($conn, $sql);
 
   if (!$result) {

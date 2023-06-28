@@ -44,12 +44,11 @@ if (!$res) {
             return false;
         }   
 
-                    if (telephone.length != 10) 
-                    {
+                    if (telephone.length !== 10 || /\D/.test(telephone)) {
+                        
                         $('#thisModal').modal('show');
-                       return false;
-
-                    }
+                        return false;
+                                }
 
                     if(initial_payment == '')
                     {

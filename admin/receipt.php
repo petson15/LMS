@@ -101,22 +101,22 @@ if (!$search_result) {
 		$row = mysqli_fetch_assoc($res);
 		?>
 
-	<b><p class="my-4" style="margin-left:140px;">Total: <?php echo $row['total'] ?></p></b>
-	<b><p style="margin-left:77px; margin-bottom: 20px;">Initial Payment: <?php echo $row['initialPayment'] ?></p></b>
-	<b><p style="margin-left:77px; margin-bottom: 20px;">Amount Due: <?php echo $row['total'] -$row['initialPayment'] ?></p></b>
+	<b><p class="my-4" style="margin-left:140px; line-height: 1px">Total: <?php echo $row['total'] ?></p></b>
+	<b><p style="margin-left:77px; margin-bottom: 20px; line-height: 1px">Initial Payment: <?php echo $row['initialPayment'] ?></p></b>
+	<b><p style="margin-left:77px; margin-bottom: 20px; line-height: 1px">Amount Due: <?php echo $row['total'] -$row['initialPayment'] ?></p></b>
 
 
-	<small>Disclaimer:</small><br>
-	<small>1-clothes not claimed after 3 months</small><br>
-	<small>will be disposed by management</small><br>
-	<small>2-Management will not bear</small><br>
-	<small>responsibility for weak and inferior</small><br>
-	<small>fabric</small><br>
-	<small>3-Damages paid for clothes shall not</small><br>
-	<small>exceed 10times the charge</small><br>
-	<small>4-customers are mandated to ensure that their</small><br>
-	<small>items are complete and accuratly returned to</small><br>
-	<small>them before leaving the receiving desk</small><br><br>
+	<p style="font-size:9px; line-height: 1px">Disclaimer:</p>
+	<p style="font-size:9px; line-height:1px">1-clothes not claimed after 3 months</p>
+	<p style="font-size:9px; line-height:1px">will be disposed by management</p>
+	<p style="font-size:9px; line-height:1px">2-Management will not bear</p>
+	<p style="font-size:9px; line-height:1px">responsibility for weak and inferior</p>
+	<p style="font-size:9px; line-height:1px">fabric</p>
+	<p style="font-size:9px; line-height:1px">3-Damages paid for clothes shall not</p>
+	<p style="font-size:9px; line-height:1px">exceed 10times the charge</p>
+	<p style="font-size:9px; line-height:1px">4-customers are mandated to ensure that their</p>
+	<p style="font-size:9px; line-height:1px">items are complete and accuratly returned to</p>
+	<p style="font-size:9px; line-height:1px">them before leaving the receiving desk</p>
 	<p>For Enquiries and complaints call Philip: 0201482964</p>
 
 	<small style="font-size:12px"><b>THANKS FOR YOU PATRONAGE</b></small><br>

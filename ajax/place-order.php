@@ -22,7 +22,6 @@ $paymentMethod = $_POST['paymentMethod'];
 $customerName = $_POST['customerName'];
 $sex = $_POST['sex'];
 $express = $_POST['express'];
-
 foreach ($_SESSION['cart'] as $item) {
     $itemId = $item['item'];
     $itemCustomerName = $item['customerName'];
@@ -54,6 +53,47 @@ foreach ($_SESSION['cart'] as $item) {
        
     }
 }
+
+
+   $check_query = "SELECT * FROM customers WHERE telephone = '$telephone'";
+    $check_result = mysqli_query($conn, $check_query);
+
+    if (!$check_result) {
+    // code...
+    echo "error in sql" . mysqli_error($conn);
+}   
+
+
+        if (mysqli_num_rows($check_result) == 0) {
+
+    $customer_tag = "SELECT MAX(id) AS max_id FROM customers";
+    $tag_result = mysqli_query($conn, $customer_tag);
+            if (!$tag_result) {
+            // code...
+            echo "error in sql" . mysqli_error($conn);
+                }
+                $row = mysqli_fetch_assoc($tag_result);
+                $maxId = $row['max_id'];
+
+                // Increment the customer ID
+                $newId = sprintf('%03d', intval($maxId) + 1); 
+
+
+                $customer_query = "INSERT INTO customers (tagnumber,name, telephone) VALUES('$newId','$customerName', '$telephone')";
+                $result = mysqli_query($conn, $customer_query);
+
+                if (!$result) {
+                    // code...
+                    echo "error in sql" . mysqli_error($conn);
+                }
+    
+
+}
+
+
+
+    
+
 
 // Close the database connection
 mysqli_close($conn);

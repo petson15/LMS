@@ -14,6 +14,7 @@
 	<title> LMS || customer-profile</title>
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/all.css">
 
 
 
@@ -88,7 +89,9 @@
 
 		$visit_count = mysqli_num_rows($visit_Result);
 
-
+		$output = "";
+		$output .= ' <i class="fa-solid fa-star fa-beat text-warning"></i>';
+	
 
 	?>
 
@@ -102,7 +105,16 @@
 		<h6>Recent visit: <b><?php echo $row['order_date']; ?></b></h6>
 		<h6>Frequency of viists: <b><?php echo $visit_count; ?></b></h6>
 		<h6>Average spending: <b><?php echo  $fetch['average_spending'];?></b></h6>
-		<h6>Total spending: <b><?php echo $total_spending_row['total_spending']; ?></b></h6>		
+		<h6>Total spending: <b><?php echo $total_spending_row['total_spending']; ?></b></h6>
+		<h6>Rating <?php
+    $star_count = floor($visit_count / 10);
+    for ($i = 0; $i < $star_count; $i++) {
+        echo $output; 
+    }
+    ?></h6>
+
+		
+
 
 
 		<h6 class="my-5">Summary of orders:</h6>
