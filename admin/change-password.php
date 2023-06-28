@@ -25,7 +25,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>LMS || Change Password</title>
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
-    <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 
 
     <style type="text/css">
@@ -42,7 +41,7 @@
     }
 
 
- 
+ 	
 
     </style>
 
@@ -51,7 +50,7 @@
 <body>
 
 
-	<?php include_once('../includes/navbar.php') ?>
+	<?php include_once('../includes/navbar.php'); ?>
 
 	<?php  
 

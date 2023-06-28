@@ -1,6 +1,6 @@
 <?php  
 session_start();
-
+include_once('../dbconfig/config.php');
 
 if (isset($_SESSION['admin']) == 'true') {
     // code...
@@ -21,8 +21,25 @@ if (isset($_SESSION['admin']) == 'true') {
 	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
 	<title></title>
 
-    <script type="text/javascript">
-    </script>
+    <!-- ...existing HTML code... -->
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the badge element
+        const badge = document.querySelector('.btn');
+
+        // Check if the current page is the change password page
+        const isChangePasswordPage = window.location.pathname.includes('change-password.php');
+
+        // Hide the badge if the current page is the change password page
+        if (isChangePasswordPage) {
+            badge.style.display = 'none';
+        }
+    });
+</script>
+
+<!-- ...remaining HTML code... -->
+
 
 	<style type="text/css">
 		body
@@ -103,7 +120,21 @@ if (isset($_SESSION['admin']) == 'true') {
 
 </head>
 <body>
+<?php 
+    
+    $currentDate = date('Y-m-d');
+  $item_count = "SELECT COUNT(item) AS item_count FROM orderitems WHERE DATE(order_date) = '$currentDate' ";
+  $count_result = mysqli_query($conn, $item_count);
 
+  if (!$count_result) {
+    // code...
+    echo "error in sql" . mysqli_error($conn);
+  }
+
+  $counts = mysqli_fetch_assoc($count_result);
+
+
+ ?>
 
 
 		<nav class="navbar navbar navbar-expand-lg navbar-dark push-nav">
@@ -135,6 +166,12 @@ if (isset($_SESSION['admin']) == 'true') {
                         </ul>
                     </li>
                 </ul>
+                <button type="button" class="btn  position-relative me-5">
+                    <i class="fa-solid fa-cart-shopping text-white"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <?php echo $counts['item_count']; ?>
+                                </span>
+                                </button>
                 <form class="d-flex me-4" role="search" >
                     <div class="dropdown"  >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >

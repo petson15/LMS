@@ -56,7 +56,7 @@ $total_pages = ceil($total_rows / $num_per_page);
             font-size: 13px;
         }
 
-        .btn {
+        .btnlink {
             position: relative;
             left: 180px;
             margin: 2px;
@@ -124,15 +124,15 @@ $total_pages = ceil($total_rows / $num_per_page);
 
     <?php
     if ($page > 1) {
-        echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='orders.php?page=".($page-1)."'>Previous</a>";
+        echo "<a class='btn-sm btnlink btn btn-primary text-primary bg-light' href='orders.php?page=".($page-1)."'>Previous</a>";
     }
 
     for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='orders.php?page=$i'>$i</a>";
+        echo "<a class='btn-sm btnlink btn btn-primary text-primary bg-light' href='orders.php?page=$i'>$i</a>";
     }
 
     if ($page < $total_pages) {
-        echo "<a class='btn btn-sm btn-primary text-primary bg-light' href='orders.php?page=".($page+1)."'>Next</a>";
+        echo "<a class='btn  btnlink btn-sm btn-primary text-primary bg-light' href='orders.php?page=".($page+1)."'>Next</a>";
     }
 
     if (isset($_GET['id'])) {

@@ -64,7 +64,7 @@ if (!$res) {
 
    		}
 
-   		.btn
+   		.btnlink
    		{
    			position: relative;
    			left: 180px;
@@ -151,20 +151,20 @@ $total_pages = ceil($total_rows/$num_per_page);
 
 	if ($page > 1) {
 		// code...
-		echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='all-orders.php?page=".($page-1)."'>Previous</a>";
+		echo "<a class='btn-sm btn btnlink btn-primary text-primary bg-light' href='all-orders.php?page=".($page-1)."'>Previous</a>";
 
 	}
 
 
 	for ($i=1; $i <=$total_pages ; $i++) { 
 		// code...
-		echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='all-orders.php?page=$i'>$i</a>";
+		echo "<a class='btn-sm btn btnlink btn-primary text-primary bg-light' href='all-orders.php?page=$i'>$i</a>";
 
 	}
 
 	if ($page < $total_pages) {
 		// code...
-		echo "<a class='btn btn-sm btn-primary text-primary bg-light' href='all-orders.php?page=".($page+1)."'>Next</a>";
+		echo "<a class='btn btn-sm btnlink btn-primary text-primary bg-light' href='all-orders.php?page=".($page+1)."'>Next</a>";
 
 	}
 
