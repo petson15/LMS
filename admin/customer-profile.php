@@ -92,7 +92,6 @@
 		$output = "";
 		$output .= ' <i class="fa-solid fa-star fa-beat text-warning"></i>';
 	
-
 	?>
 
 	<div class="container"><h4 style=" margin:30px; color: grey; margin-left: 1px;">Customer Profile</h4></div>

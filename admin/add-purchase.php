@@ -194,12 +194,12 @@ include_once('../dbconfig/config.php');
 if (isset($_POST['save'])) {
     $total = 0;
     $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
-    $invoice = mysqli_real_escape_string($conn,$_POST['invoice']);
-    $receipt = mysqli_real_escape_string($conn,$_POST['receipt']);
-    $date = mysqli_real_escape_string($conn,$_POST['date']);
-    $items = mysqli_real_escape_string($conn,$_POST['items']);
-    $quantity = mysqli_real_escape_string($conn,$_POST['quantity']);
-    $unitPrice = mysqli_real_escape_string($conn,$_POST['unitprice']);
+    $invoice = mysqli_real_escape_string($conn, $_POST['invoice']);
+    $receipt = mysqli_real_escape_string($conn, $_POST['receipt']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $items =  $_POST['items'];
+    $quantity =  $_POST['quantity'];
+    $unitPrice =  $_POST['unitprice'];
     $loggedby = $_SESSION['user'];
 
     $rowCount = count($items);

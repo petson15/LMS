@@ -120,7 +120,16 @@
 
 <?php  
 
-  
+  $currentDate = date('Y-m-d');
+  $item_count = "SELECT COUNT(item) AS item_count FROM orderitems WHERE DATE(order_date) = '$currentDate' ";
+  $count_result = mysqli_query($conn, $item_count);
+
+  if (!$count_result) {
+    // code...
+    echo "error in sql" . mysqli_error($conn);
+  }
+
+  $counts = mysqli_fetch_assoc($count_result);
 
 ?>
 		
@@ -128,7 +137,7 @@
 	 <div class="item-count my-3 ms-5 me-5 first-col">
       <div>
         <i class="fa-solid fa-cart-shopping fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
-        <p class="text-white d-flex justify-content-center"></p>
+        <p class="text-white d-flex justify-content-center"><?php echo $counts['item_count']; ?></p>
         <p class="text-white d-flex justify-content-center" >Item Count</p>
       </div>
     </div>
@@ -252,7 +261,7 @@
      <div class="item-count my-3 ms-4 first-col">
       <div>
         <i class="fa-solid fa-money-bill-trend-up fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
-        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_daily_total['total'] + $pending_daily_total['pending_total']?></p>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_daily_total['total'] + $pending_daily_total['pending_total'] + $initial_sum['initialPaymentSum']?></p>
         <p class="text-white d-flex justify-content-center" >Total sales daily</p>
       </div>
     </div>
@@ -314,7 +323,7 @@
      <div class="item-count my-3 ms-4 first-col">
       <div> 
         <i class="fa-solid fa-solid fa-sack-dollar fa-fade fa-lg d-flex pb-2 py-3 justify-content-center text-white"></i>
-        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_sales['completed_total'] + $pending_sales['pending_total'] ; ?></p>
+        <p class="text-white d-flex justify-content-center">GHC <?php echo $completed_sales['completed_total'] + $pending_sales['pending_total'] + $initial_sum['initialPaymentSum']; ?></p>
         <p class="text-white d-flex justify-content-center" >Overall total sales</p>
       </div>
     </div>

@@ -3,7 +3,15 @@
     session_start();
     include_once('../dbconfig/config.php');
     
-    $sql = "SELECT * FROM orderitems ORDER BY order_date";
+
+
+    $searchValue = '';
+if (isset($_GET['search'])) {
+    $searchValue = $_GET['search'];
+}
+
+
+    $sql = "SELECT * FROM orderitems WHERE customer LIKE '%$searchValue%' OR order_id LIKE '%$searchValue%' ORDER BY order_date ";
     $res = mysqli_query($conn, $sql);
 
     if (!$res) {
@@ -12,7 +20,7 @@
     }
 
     
-
+ 
 
 
 
@@ -26,7 +34,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
-	<script type="" src="../js/bootstrap.bundle.min.js"></script>
+  <script type="" src="../js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<title> LMS || Order screen</title>
 
@@ -91,10 +99,31 @@
         font-size: 13px;
 
       }
+        #searchInput 
+       {
+            float: right;
+            display: flex;
+            position: relative;
+            top: -5px;
+            right: 80px;
+            outline: none;
+        }
 
 	</style>
 
+ <script type="text/javascript">
+ var searchTimer;
 
+        function startSearchTimer() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(performSearch, 500); // Adjust the delay here (in milliseconds)
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            window.location.href = 'order-screen.php?search=' + encodeURIComponent(searchValue);
+        }
+</script>
 
 </head>
 <body>
@@ -107,8 +136,10 @@
 
 </nav>
 	<div class="my-5">
+     <input type="text" name="search" class="Search"  placeholder="Search item"  id="searchInput" value="<?php echo $searchValue; ?>" onkeyup="startSearchTimer()">
 
-	<table class="table table-bordered text-center fw-lighter my-5 " id="order-table">
+
+	<table class="table table-bordered text-center fw-lighter my-5 " id="ordertable">
   <thead class="t text-center ">
     <tr>
       <th scope="col" class="fw-lighter">#invoice number</th>
@@ -196,6 +227,8 @@
   </div>
 </div>
 
+
+  
 
 </body>
 </html>

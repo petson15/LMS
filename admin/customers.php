@@ -5,20 +5,28 @@ $page = 1;
 if (isset($_GET['page'])) {
   $page = $_GET['page'];
 } else {
-  $page = 1;
+  $page = 1; 
 }
 
 $start_from = ($page - 1) * 12;
 $num_per_page = 12;
 
-$sql = "SELECT DISTINCT customer, id, sex, telephone, AVG(price) AS average_spending FROM orderitems GROUP BY customer, telephone ORDER BY telephone DESC LIMIT $start_from, $num_per_page";
+
+$searchValue = '';
+if (isset($_GET['search'])) {
+    $searchValue = $_GET['search'];
+}
+
+
+
+$sql = "SELECT DISTINCT customer, id, sex, telephone, AVG(price) AS average_spending FROM orderitems WHERE customer LIKE '%$searchValue%' GROUP BY customer, telephone ORDER BY telephone DESC LIMIT $start_from, $num_per_page";
 $res = mysqli_query($conn, $sql);
 
 if (!$res) {
   echo "Error in SQL: " . mysqli_error($conn);
 }
 
-$total_rows_sql = "SELECT COUNT(DISTINCT customer, telephone) AS total FROM orderitems";
+$total_rows_sql = "SELECT COUNT(DISTINCT customer, telephone) AS total FROM orderitems WHERE customer LIKE '%$searchValue%'";
 $total_rows_result = mysqli_query($conn, $total_rows_sql);
 $total_rows_row = mysqli_fetch_assoc($total_rows_result);
 $total_rows = $total_rows_row['total'];
@@ -64,6 +72,16 @@ $total_pages = ceil($total_rows / $num_per_page);
     margin: 2px;
     bottom: 2px;
   }
+     #searchInput 
+       {
+            float: right;
+            display: flex;
+            position: relative;
+            top: -5px;
+            right: 80px;
+            outline: none;
+        }
+
 </style>
 
 <body>
@@ -74,6 +92,7 @@ $total_pages = ceil($total_rows / $num_per_page);
   </div>
 
   <div class="container">
+    <input type="text" name="search" class="search" placeholder="Search" id="searchInput" value="<?php echo $searchValue; ?>" onkeyup="startSearchTimer()">
     <table class="table table-bordered fw-semilight ms-5 tab-1">
       <thead>
         <tr>
@@ -119,5 +138,19 @@ $total_pages = ceil($total_rows / $num_per_page);
   }
   ?>
 
+
+<script type="text/javascript">
+    var searchTimer;
+
+        function startSearchTimer() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(performSearch, 500); // Adjust the delay here (in milliseconds)
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            window.location.href = 'customers.php?search=' + encodeURIComponent(searchValue);
+        }
+</script>
 </body>
 </html>

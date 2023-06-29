@@ -5,7 +5,7 @@
 
 	$page = 1;
 if (isset($_GET['page'])) { 
-	// code...
+	// code... 
 	$page = $_GET['page']; 
 }
 else
