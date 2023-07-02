@@ -17,6 +17,17 @@ $Amount_remaining = 0;
 	<title>LMS || Today sales</title>
 	<link rel="website icon" type="png" href="../avatars/logobs.png">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
+      <script type="text/javascript" src="../js/jquery.js"></script>
+
+  <script type="text/javascript">
+    
+      $(document).ready(function(){
+      $("#btncomplete").click(function(){
+        $('#thisModal').modal('show');
+      }); 
+    }); 
+
+  </script>
 	<style type="text/css">
 		
 
@@ -162,7 +173,7 @@ $Amount_remaining = 0;
 
 
 
-        ?>
+        ?> 
         <p class="text-white d-flex justify-content-center">GHC <?php echo  $Amount_remaining + $previous_Balance['total'];?></p>
         <p class="text-white d-flex justify-content-center" >Amount remaining</p>
       </div>
@@ -177,10 +188,32 @@ $Amount_remaining = 0;
     </div>
  </div>
  <div class=" completebtn ">
-  <form method="POST" action="today-sales.php">
-   <button class="btn btn-md my-5 btn-primary btn-lg fw-semilight fw-semilight" type="submit" name="complete">Complete Daily sales</button>
- </form>
+  
+   <button class="btn btn-md my-5 btn-primary btn-lg fw-semilight fw-semilight " id="btncomplete"  type="button" name="">Complete Daily sales</button>
+ 
  </div>
+
+
+  <div class="modal fade" id="thisModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel">CONFIRM ACTION</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+        Do you really want to complete sales !
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="today-sales.php">
+        <button type="submit" class="btn btn-secondary bg-danger" data-bs-dismiss="modal" name="complete">Yes</button>
+        
+      </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
@@ -197,6 +230,7 @@ $Amount_remaining = 0;
         // code...
         echo "error in sql" . mysqli_error($conn);
       }
+
     }
 
 

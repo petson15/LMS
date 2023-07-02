@@ -1,0 +1,53 @@
+SOFTWARE LICENSE AGREEMENT
+
+IMPORTANT: PLEASE READ THIS SOFTWARE LICENSE AGREEMENT ("LICENSE") CAREFULLY BEFORE INSTALLING OR USING THE LAUNDRY SOFTWARE SYSTEM (THE "SOFTWARE"). BY INSTALLING OR USING THE SOFTWARE, YOU (THE "LICENSEE") AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS LICENSE.
+
+1. LICENSE GRANT:
+   Subject to the terms and conditions of this License, the Licensor hereby grants the Licensee a non-exclusive, 
+non-transferable license to install and use the Software for the purpose of 
+managing laundry operations in the Licensee's laundry facility.
+
+2. LICENSE RESTRICTIONS:
+   The Licensee shall not:
+   a) Copy, modify, or distribute the Software or any portion thereof;
+   b) Reverse engineer, decompile, or disassemble the Software;
+   c) Remove or alter any proprietary notices, labels, or marks on the Software;
+   d) Use the Software for any illegal or unauthorized purpose;
+   e) Transfer, sublicense, or assign the License or the Software to any third party without prior written consent from the Licensor.
+
+3. INTELLECTUAL PROPERTY:
+   The Licensee acknowledges that the Software and all intellectual property rights therein are the sole and exclusive property of the Licensor. 
+The Licensee agrees not to take any action inconsistent with such ownership or any third-party rights.
+
+4. SUPPORT AND UPDATES:
+   The Licensor may provide support and updates for the Software at its discretion. 
+Such support and updates, if provided, shall be governed by the terms and conditions set forth by the Licensor.
+
+5. WARRANTY DISCLAIMER:
+   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. 
+THE LICENSOR DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL MEET 
+THE LICENSEE'S REQUIREMENTS OR THAT ITS OPERATION WILL BE UNINTERRUPTED OR ERROR-FREE.
+
+6. LIMITATION OF LIABILITY:
+   IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ARISING IN ANY WAY OUT OF THE USE, INABILITY TO USE, OR THE RESULTS OF USE OF THE SOFTWARE, WHETHER BASED ON WARRANTY, CONTRACT, TORT, 
+OR ANY OTHER LEGAL THEORY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+7. TERMINATION:
+   This License is effective until terminated. The Licensee may terminate this License at any time by destroying all copies of the Software. 
+The Licensor may terminate this License if the Licensee breaches any of its terms and conditions. 
+Upon termination, the Licensee must cease all use of the Software and destroy all copies in its possession.
+
+8. GOVERNING LAW:
+   This License shall be governed by and construed in accordance with the laws of [Jurisdiction]. 
+Any disputes arising under or in connection with this License shall be subject to the exclusive jurisdiction of the courts of [Jurisdiction].
+
+9. ENTIRE AGREEMENT:
+   This License constitutes the entire agreement between the Licensee and the Licensor regarding the subject matter hereof and supersedes 
+all prior or contemporaneous agreements, understandings, or representations, whether oral or written.
+
+By installing or using the Software, the Licensee acknowledges that they have read this License, understand it, 
+and agree to be bound by its terms and conditions.
+
