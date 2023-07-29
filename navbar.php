@@ -11,10 +11,10 @@ if (isset($_SESSION['employee']) == 'true') {
 
 ?>
 
+ 
 
 
-
-
+ 
 
 
 <!DOCTYPE html>
@@ -24,9 +24,12 @@ if (isset($_SESSION['employee']) == 'true') {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./bootstrap/bootstrap.css">
 	<script type="" src="./js/bootstrap.bundle.min.js"></script>
+    <script type="" src="./js/jquery.js"></script>
 	<link rel="website icon" type="png" href="./avatars/logobs.png">
 	<link rel="stylesheet" type="text/css" href="./fonts/all.css">
 	<title></title>
+
+   
 
 		<style type="text/css">
 		body
@@ -129,18 +132,7 @@ if (isset($_SESSION['employee']) == 'true') {
                     <button type="button" class="btn  position-relative me-5">
                     <i class="fa-solid fa-cart-shopping text-white"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        <?php  
-                                $counts = 0;
-                            if (!empty($_SESSION['cart'])) {
-                                // code...
-                                foreach($_SESSION['cart'] as $count)
-                                {
-                                    $counts++;
-                                }
-
-                            }
-                            echo $counts;
-                        ?>
+                                    <div class="count"></div>
                                    
                                 </span>
                                 </button>
@@ -224,8 +216,7 @@ if (isset($_SESSION['employee']) == 'true') {
 
 
 
-     
-    </script> <script type="text/javascript">
+    <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll('.sidebar .nav-link').forEach(function(element) {
 
@@ -254,6 +245,29 @@ if (isset($_SESSION['employee']) == 'true') {
             }) // forEach
         });
         // DOMContentLoaded  end
+
+         $(document).ready(function() {
+            function sendCount() {
+                let count = $("input[name='count']").val();
+
+                $.ajax({
+                    url: "clear-session.php", // Replace "update_count.php" with the correct PHP script that returns the count
+                    method: "POST",
+                    data: {
+                        count: count
+                    },
+                    success: function(response) {
+                        // Handle the response from the server if needed
+                         $(".count").text(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error updating count:", error);
+                    }
+                });
+            }
+
+            setInterval(sendCount, 100); // Call sendCount() function every 5 seconds (adjust the interval as needed)
+        });
     </script>
 
 

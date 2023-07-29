@@ -182,6 +182,7 @@ if (!$res) {
             
         </div>
          <div >
+            <small class="text-primary ms-5">remember to click on the cart item on the top right corner when done to view items</small>
         
     </div>
 

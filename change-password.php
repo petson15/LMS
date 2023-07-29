@@ -11,7 +11,7 @@
 
 
 ?>
-
+ 
 
 
 
@@ -129,7 +129,7 @@
         <input type="password" name="confirmPassword" class="form-control my-2">
 
         <div class="center-button"> 
-            <button class="btn btn-primary btn-md my-4" type="submit" name="change">
+            <button class="update-btn  btn btn-primary btn-md my-4" type="submit" name="change">
                 Update changes
             </button>
         </div>

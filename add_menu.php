@@ -112,7 +112,6 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
                     $paymentMethod = $value['paymentMethod'];
                 }
 
-                $_SESSION['count'] = $counts++;
                 echo "<h6>Customer: ". $name. "</h6>";
                 echo "<h6>Telephone: ". $tel. "</h6>";
                 echo "<h6>Sex: ". $sex. "</h6>";
