@@ -1,6 +1,19 @@
 <?php  
  
 	include_once('./dbconfig/config.php');
+$page = 1;
+
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+}
+else
+{
+  $page = 1;
+}
+
+
+$num_per_page = 12;
+$start_from = ($page - 1) * $num_per_page;
 
 
   $searchValue = '';
@@ -9,7 +22,7 @@ if (isset($_GET['search'])) {
 }
 
 
-	$sql = "SELECT * FROM customers WHERE name LIKE '%$searchValue%' OR tagnumber LIKE '%$searchValue%' ORDER BY tagnumber ASC";
+	$sql = "SELECT * FROM customers WHERE name LIKE '%$searchValue%' OR tagnumber LIKE '%$searchValue%' ORDER BY tagnumber ASC LIMIT $start_from, $num_per_page";
   	$result = mysqli_query($conn, $sql);
 
   if (!$result) {
@@ -17,15 +30,6 @@ if (isset($_GET['search'])) {
     echo "<script>alert('error in sql')</script>";
   }
 
-$page = 1;
-
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-}
-
-
-$num_per_page = 12;
-$start_from = ($page - 1) * $num_per_page;
 
 
 

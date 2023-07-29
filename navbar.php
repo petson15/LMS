@@ -125,6 +125,27 @@ if (isset($_SESSION['employee']) == 'true') {
                         <a class="nav-link text-white" href="./order screen/order-screen.php" target="_blank">order screen</a>
                     </li>
                 </ul>
+                <a href="add_menu.php">
+                    <button type="button" class="btn  position-relative me-5">
+                    <i class="fa-solid fa-cart-shopping text-white"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?php  
+                                $counts = 0;
+                            if (!empty($_SESSION['cart'])) {
+                                // code...
+                                foreach($_SESSION['cart'] as $count)
+                                {
+                                    $counts++;
+                                }
+
+                            }
+                            echo $counts;
+                        ?>
+                                   
+                                </span>
+                                </button>
+                </a>
+
                 <form class="d-flex me-4" role="search" >
                     <div class="dropdown"  >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >

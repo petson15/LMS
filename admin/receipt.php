@@ -11,7 +11,7 @@ $sql = "SELECT DISTINCT order_id, order_date, servedby,id, paymethod, total, tel
         GROUP BY order_id DESC";
 $res = mysqli_query($conn, $sql);
 
-if (!$res) {
+if (!$res) { 
     echo  mysqli_error($conn);
 }
 
@@ -70,6 +70,7 @@ if (!$search_result) {
 			<th>item</th>
 			<th>quantity</th>
 			<th>price</th>
+			<th>subtotal</th>
 		</tr>
 		<?php 
 
@@ -89,6 +90,7 @@ if (!$search_result) {
 			<td><?php echo $rows['item'] ?></td>
 			<td align="center"><?php echo $rows['quantity'] ?></td>
 			<td align="center" ><?php echo $rows['price'] ?></td>
+			<td align="center" ><?php echo $rows['price']*$rows['quantity'] ?></td>
 		</tr>
 	<?php } ?>
 	
@@ -117,7 +119,7 @@ if (!$search_result) {
 	<p style="font-size:9px; line-height:1px">4-customers are mandated to ensure that their</p>
 	<p style="font-size:9px; line-height:1px">items are complete and accuratly returned to</p>
 	<p style="font-size:9px; line-height:1px">them before leaving the receiving desk</p>
-	<p>For Enquiries and complaints call Philip: 0201482964</p>
+	<p>For Enquiries and complaints call: 0549125914</p>
 
 	<small style="font-size:12px"><b>THANKS FOR YOU PATRONAGE</b></small><br>
 	<small style="font-size:12px"><b>powered by PETSON</b></small>

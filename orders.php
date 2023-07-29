@@ -6,16 +6,20 @@ $page = 1;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
+else
+{
+    $page = 1;
+}
 
 $num_per_page = 12;
-$start_from = ($page - 1) * $num_per_page;
+$start_from = ($page - 1) * 12;
 
 $searchValue = '';
-if (isset($_GET['search'])) {
+if (isset($_GET['search'])) { 
     $searchValue = $_GET['search'];
 }
 
-$sql = "SELECT DISTINCT id, order_id, order_date, servedby, paymethod, total, telephone, customer, initialPayment
+$sql = "SELECT DISTINCT id, order_id, order_date, servedby, paymethod, total, telephone, customer, initialPayment,expressAmount
         FROM orderitems
         WHERE customer LIKE '%$searchValue%' OR telephone LIKE '%$searchValue%' OR paymethod LIKE '%$searchValue%' OR order_id LIKE '%$searchValue%' 
         GROUP BY order_id DESC
@@ -56,7 +60,7 @@ $total_pages = ceil($total_rows / $num_per_page);
             font-size: 13px;
         }
 
-        .btn {
+        .btnPaginition {
             position: relative;
             left: 180px;
             margin: 2px;
@@ -91,6 +95,7 @@ $total_pages = ceil($total_rows / $num_per_page);
                 <th scope="col">Telephone</th>
                 <th scope="col">Payment method</th>
                 <th scope="col">Total</th>
+                 <th scope="col">Express</th>
                 <th scope="col">Initial payment</th>
                 <th scope="col">Amount Due</th>
                 <th scope="col">Order date</th>
@@ -108,9 +113,10 @@ $total_pages = ceil($total_rows / $num_per_page);
                 <td><?php echo $row['customer']; ?></td>
                 <td><?php echo $row['telephone']; ?></td>
                 <td><?php echo $row['paymethod']; ?></td>
-                <td>GHC <?php echo $row['total']; ?></td>
+                <td>GHC <?php echo $row['total'] + $row['expressAmount']; ?></td>
+                <td>GHC <?php echo  $row['expressAmount']; ?></td>
                 <td>GHC <?php echo $row['initialPayment']; ?></td>
-                <td>GHC <?php echo $row['total'] - $row['initialPayment']; ?></td>
+                <td>GHC <?php echo ($row['total'] + $row['expressAmount']) - $row['initialPayment']; ?></td>
                 <td><?php echo $row['order_date']; ?></td>
                 <td><?php echo $row['servedby']; ?></td>
                 <td><a href="orders.php?id=<?php echo $row['id']; ?>"><i title="print" class="fa-solid fa-eye ms-3 text-primary"></i></a></td>
@@ -124,15 +130,15 @@ $total_pages = ceil($total_rows / $num_per_page);
 
     <?php
     if ($page > 1) {
-        echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='orders.php?page=".($page-1)."'>Previous</a>";
+        echo "<a class='btn-sm btn btn-primary btnPaginition  text-primary bg-light' href='orders.php?page=".($page-1)."'>Previous</a>";
     }
 
     for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<a class='btn-sm btn btn-primary text-primary bg-light' href='orders.php?page=$i'>$i</a>";
+        echo "<a class='btn-sm btn btn-primary  btnPaginition text-primary bg-light' href='orders.php?page=$i'>$i</a>";
     }
 
     if ($page < $total_pages) {
-        echo "<a class='btn btn-sm btn-primary text-primary bg-light' href='orders.php?page=".($page+1)."'>Next</a>";
+        echo "<a class='btn btn-sm btn-primary  btnPaginition  text-primary bg-light' href='orders.php?page=".($page+1)."'>Next</a>";
     }
 
     if (isset($_GET['id'])) {

@@ -73,7 +73,7 @@
     <?php  
     $employee = $_SESSION['employee'];
   $currentDate = date('Y-m-d');
-  $item_count = "SELECT COUNT(item) AS item_count FROM orderitems WHERE DATE(order_date) = '$currentDate' AND servedby = '$employee' ";
+  $item_count = "SELECT SUM(quantity) AS item_count FROM orderitems WHERE DATE(order_date) = '$currentDate' AND servedby = '$employee' ";
   $count_result = mysqli_query($conn, $item_count);
 
   if (!$count_result) {

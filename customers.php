@@ -17,7 +17,7 @@ if (isset($_GET['search'])) {
     $searchValue = $_GET['search'];
 }
 
-
+ 
 
 $sql = "SELECT DISTINCT customer, id, sex, telephone, AVG(price) AS average_spending FROM orderitems WHERE customer LIKE '%$searchValue%' GROUP BY customer, telephone ORDER BY telephone DESC LIMIT $start_from, $num_per_page";
 $res = mysqli_query($conn, $sql);

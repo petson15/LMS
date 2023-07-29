@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    
 
-</head>
+ 
+</head> 
 <body>
 <?php
 session_start();
@@ -34,7 +34,7 @@ foreach ($_SESSION['cart'] as $item) {
     $servedby = $_SESSION['user'];
     $currentDate = date('Y-m-d');
     $itemquantity = $item['quantity'];
-    $initial_payment = $item['initialPay']; 
+    $initial_payment = $_SESSION['initial_payment']; 
     $sql = "INSERT INTO orderitems (order_id, item, quantity, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed, completed_date,initialPayment)
             VALUES ('$id', '$itemId','$itemquantity', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0, 0, '$initial_payment')";
 
@@ -97,9 +97,10 @@ foreach ($_SESSION['cart'] as $item) {
 
 // Close the database connection
 mysqli_close($conn);
-
-
+            
+        unset($_SESSION['initial_payment']);
         unset($_SESSION['cart']);
+
 
    
 

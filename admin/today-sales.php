@@ -3,7 +3,7 @@
 include_once('../dbconfig/config.php');
 
 $previous_Balance = 0;
-$Amount_remaining = 0;
+
 
 ?>
 
@@ -102,17 +102,19 @@ $Amount_remaining = 0;
 
     $expenses_Total = mysqli_fetch_assoc($res);
 
-     $previousDate = date('Y-m-d', strtotime('-1 day'));
-              $sql = "SELECT previousAmount AS total FROM previousbalance WHERE DATE(Balance_date) = '$previousDate'";
-              $res = mysqli_query($conn, $sql);
+     $sql = "SELECT previousAmount AS total FROM previousbalance ORDER BY Balance_date DESC LIMIT 1";
+$res = mysqli_query($conn, $sql);
 
-              $previous_Balance = mysqli_fetch_assoc($res);
+if (!$res) {
+    echo "error in sql" . mysqli_error($conn);
+}
 
-              if (!$res) {
-                // code...
-                echo "error in sql" . mysqli_error($conn);
-              }
+$previous_Balance = mysqli_fetch_assoc($res);
 
+// Check if previous balance exists, if not, set it to 0
+if (!$previous_Balance || empty($previous_Balance['total'])) {
+    $previous_Balance['total'] = 0;
+}
 
    ?>
 
@@ -170,7 +172,7 @@ $Amount_remaining = 0;
         <?php  
 
               $Amount_remaining = ($initial_sales['sales_total'] + $daily_sales['sales_total'] ) - $expenses_Total['total'];
-
+              $final_amount = $Amount_remaining + $previous_Balance['total'];
 
 
         ?> 
@@ -223,16 +225,18 @@ $Amount_remaining = 0;
     if (isset($_POST['complete'])) {
       // code...
 
-      $sql = "INSERT INTO previousbalance(previousAmount) VALUES('$Amount_remaining')";
+      $sql = "INSERT INTO previousbalance(previousAmount) VALUES('$final_amount')";
       $res = mysqli_query($conn, $sql);
 
       if (!$sql) {
         // code...
         echo "error in sql" . mysqli_error($conn);
+        exit;
       }
 
-    }
+      echo "<script>window.location.href = 'dashboard.php'</script>";
 
+    }
 
 
 ?>

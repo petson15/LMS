@@ -14,7 +14,7 @@ $res = mysqli_query($conn, $sql);
 if (!$res) {
     echo  mysqli_error($conn);
 }
-
+ 
 $row = mysqli_fetch_assoc($res);
 $tel = $row['telephone'];
 
@@ -70,6 +70,7 @@ if (!$search_result) {
 			<th>item</th>
 			<th>quantity</th>
 			<th>price</th>
+			<th>subtotal</th>
 		</tr>
 		<?php 
 
@@ -89,6 +90,7 @@ if (!$search_result) {
 			<td><?php echo $rows['item'] ?></td>
 			<td align="center"><?php echo $rows['quantity'] ?></td>
 			<td align="center" ><?php echo $rows['price'] ?></td>
+			<td align="center" ><?php echo $rows['price']*$rows['quantity'] ?></td>
 		</tr>
 	<?php } ?>
 	
@@ -96,13 +98,14 @@ if (!$search_result) {
 
 	<?php  
 
-		$sql = "SELECT total, initialPayment FROM orderitems WHERE order_id = '$order_id'";
+		$sql = "SELECT total, initialPayment,expressAmount FROM orderitems WHERE order_id = '$order_id'";
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($res);
 		?>
 
-	<b><p class="my-4" style="margin-left:140px; line-height: 1px">Total: <?php echo $row['total'] ?></p></b>
-	<b><p style="margin-left:77px; margin-bottom: 20px; line-height: 1px">Initial Payment: <?php echo $row['initialPayment'] ?></p></b>
+	<b><p class="my-4" style="margin-left:140px; line-height: 1px">Total: <?php echo $row['total'] + $row['expressAmount']; ?></p></b>
+	<b><p class="my-4" style="margin-left:120px; line-height: 1px">Express: <?php echo $row['expressAmount']; ?></p></b>
+	<b><p style="margin-left:70px; margin-bottom: 20px; line-height: 1px">Initial Payment: <?php echo $row['initialPayment'] ?></p></b>
 	<b><p style="margin-left:77px; margin-bottom: 20px; line-height: 1px">Amount Due: <?php echo $row['total'] -$row['initialPayment'] ?></p></b>
 
 
@@ -117,10 +120,10 @@ if (!$search_result) {
 	<p style="font-size:9px; line-height:1px">4-customers are mandated to ensure that their</p>
 	<p style="font-size:9px; line-height:1px">items are complete and accuratly returned to</p>
 	<p style="font-size:9px; line-height:1px">them before leaving the receiving desk</p>
-	<p>For Enquiries and complaints call Philip: 0201482964</p>
+	<p>For Enquiries and complaints call: 0549125914</p>
 
 	<small style="font-size:12px"><b>THANKS FOR YOU PATRONAGE</b></small><br>
-	<small style="font-size:12px"><b>powered by PETSON</b></small>
+	<small style="font-size:12px"><b>powered by PETSON - 0556524653</b></small>
 
 </div>
 

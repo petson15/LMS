@@ -7,7 +7,7 @@
     <title></title>
 
     
-
+  
 </head>
 <body>
 
@@ -35,7 +35,8 @@ foreach ($_SESSION['cart'] as $item) {
     $servedby = $_SESSION['employee'];
     $currentDate = date('Y-m-d');
     $itemquantity = $item['quantity'];
-    $initial_payment = $item['initialPay']; 
+     $initial_payment = $_SESSION['initial_payment']; 
+    
     $sql = "INSERT INTO orderitems (order_id, item, quantity, customer, telephone, sex, paymethod, ExpressAmount, price, total, servedby, Dates, completed, completed_date,initialPayment)
             VALUES ('$id', '$itemId','$itemquantity', '$itemCustomerName', '$itemTelephone', '$itemSex', '$itemPaymentMethod', '$itemExpressAmount', '$itemPrice', '$total', '$servedby', '$currentDate', 0, 0, '$initial_payment')";
 

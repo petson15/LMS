@@ -156,7 +156,7 @@ if (isset($_SESSION['admin']) == 'true') {
                             Inventory
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="purchase.php">Add Purchase</a></li>
+                            <li><a class="dropdown-item" href="purchase.php">Add Expenses</a></li>
                               <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -216,7 +216,7 @@ if (isset($_SESSION['admin']) == 'true') {
                 <li class="nav-item has-submenu my-2">
                     <a class="nav-link text-white" href="#"> <i class="fa-sharp fa-solid fa-warehouse"></i><span class="links ms-1">Inventory</span></a>
                     <ul class="submenu collapse">
-                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links ms-1"> Add purchase</span></a></li>
+                        <li><a class="nav-link text-white" href="purchase.php"><i class="fa-solid fa-cart-shopping"></i><span class="links ms-1"> Add expenses</span></a></li>
                         <li><a class="nav-link text-white" href="today-sales.php"><i class="fa-sharp fa-solid fa-money-bill"></i><span class="links ms-1">Today sales</span></a></li>
                     </ul>
                 </li>

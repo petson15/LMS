@@ -10,8 +10,7 @@ if (!$res) {
 }
 
  
-    
-
+     
  
 ?>
   
@@ -26,63 +25,73 @@ if (!$res) {
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script>
 
-        $(document).ready(function(){
-            $(".btn-add-item").click(function(){
-                let item = $(this).attr("item");
-                let id = $(this).attr('id');
-                let price = $(this).attr("price");
-                let quantity = $(this).closest("tr").find(".form-control").val();
-                let telephone = $("input[name='tel']").val();
-                let customerName = $("input[name='cus-name']").val(); 
-                 let sex = $("select[name='sex']").val();
-                  let paymentMethod = $("select[name='pay-method']").val();
-                  let express = $("select[name='express']").val();
-                  let initial_payment = $("input[name='initial_payment']").val();
-
-                     if (telephone === '' || customerName === '' || paymentMethod == 0 || sex == 0) {
-           $('#myModal').modal('show');
+       $(document).ready(function() {
+    // Function to send the form data
+    function sendFormData() {
+        let item = $(this).attr("item");
+        let id = $(this).attr('id');
+        let price = $(this).attr("price");
+        let quantity = $(this).closest("tr").find(".form-control").val();
+        let telephone = $("input[name='tel']").val();
+        let customerName = $("input[name='cus-name']").val(); 
+        let sex = $("select[name='sex']").val();
+        let paymentMethod = $("select[name='pay-method']").val();
+        let express = $("select[name='express']").val();
+       
+        if (telephone === '' || customerName === '' || paymentMethod == 0 || sex == 0) {
+            $('#myModal').modal('show');
             return false;
-        }   
+        }
 
-                    if (telephone.length !== 10 || /\D/.test(telephone)) {
-                        
-                        $('#thisModal').modal('show');
-                        return false;
-                                }
+        if (telephone.length !== 10 || /\D/.test(telephone)) {
+            $('#thisModal').modal('show');
+            return false;
+        }
 
-
-                    if(initial_payment == '')
-                    {
-                        $('#errorsModal').modal('show');
-                        return false;
-                    }
-
-
-                $.ajax({
-                    url: "../ajax/add_menu.php",
-                    method: "POST",
-                    data: { 
-                        item: item,
-                         price: price,
-                        quantity: quantity,
-                        telephone: telephone,
-                        customerName: customerName,
-                        sex: sex, 
-                        paymentMethod: paymentMethod,
-                        id: id,
-                        express: express,
-                        initial_payment: initial_payment
-
-
-                    },
-                    success:function(data){
-                        $(".item_table").html(data);
-                    }
-                });
-
-            });
+        $.ajax({
+            url: "../ajax/add_menu.php",
+            method: "POST",
+            data: { 
+                item: item,
+                price: price, 
+                quantity: quantity,
+                telephone: telephone,
+                customerName: customerName,
+                sex: sex, 
+                paymentMethod: paymentMethod,
+                id: id,
+                express: express
+            },
+            success: function(data) {
+                $(".item_table").html(data);
+            }
         });
+    }
+    $(".btn-add-item").click(sendFormData);
+});
 
+  $(document).ready(function() {
+    $(".add-initial").click(function() {
+         let initial_payment = $("input[name='initial_payment']").val();
+
+
+
+        $.ajax({
+            url: "../ajax/add_initialPay.php",
+            method: "POST",
+            data: {
+                initial_payment: initial_payment,
+                
+            },
+            success: function(data) {
+                $(".initialpay").html(data);
+            },
+            error: function(xhr, status, error) {
+                console.log("AJAX request error:", status, error);
+            }
+        });
+    });
+});
 
     </script>
 
@@ -153,7 +162,8 @@ if (!$res) {
     </style>
 </head>
 <body>
-    <?php include_once('../includes/navbar.php') ?>
+    <?php include_once('../includes/navbar.php')
+     ?>
     
     <div class="container my-5" style="max-width: 80%;">
         <div class="pos-form ms-4">
@@ -201,6 +211,7 @@ if (!$res) {
         </div>
 
         <div class="d-flex justify-content-end me-5">
+            <button class="btn btn-primary me-2 add-initial" type="button">add</button>
             <label for="initialpay" style="margin-right: 99px;">
                 initial payment: 
                 <input type="number" name="initial_payment"  style="outline: none;" required>
@@ -214,6 +225,7 @@ if (!$res) {
         </div>
          <div >
         <div class="item_table"></div>
+        <div class="initialpay"></div>
         
     </div>
 

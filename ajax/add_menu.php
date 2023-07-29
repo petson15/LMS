@@ -1,4 +1,4 @@
-<?php
+<?php  
 
     session_start();
     //unset($_SESSION['cart']);
@@ -15,9 +15,8 @@
     $id = mysqli_escape_string($conn, $_POST['id']);
     $express_amount = mysqli_escape_string($conn, $_POST['express']);
     $total = 0;
-    $initial_payment = mysqli_escape_string($conn,$_POST['initial_payment']);
  
-
+ 
 
  
 
@@ -30,7 +29,6 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
     $sex = $_POST['sex'];
     $paymentMethod = $_POST['paymentMethod'];
     $express_amount = $_POST['express'];
-    $initial_payment = $_POST['initial_payment'];
     $_SESSION['express'] = $_POST['express'];
 
     $id = $_POST['id'];
@@ -46,7 +44,6 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
         'paymentMethod' => $paymentMethod,
         'id' => $id,
         'express' => $express_amount,
-        'initialPay' => $initial_payment,
 
 
     ];
@@ -228,6 +225,5 @@ if (isset($_POST['item']) && isset($_POST['price']) && isset($_POST['quantity'])
 </div>
 
       <div class="place"></div> 
-
 </body>
 </html>
