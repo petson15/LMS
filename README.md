@@ -78,5 +78,3 @@ We welcome contributions to enhance the functionality and usability of the Laund
 
 
 ---
-
-Thank you for choosing the Laundry Management System! We hope this software helps you efficiently manage your laundry business operations. If you have any questions or feedback, please reach out to us at support@laundrysystem.com.
