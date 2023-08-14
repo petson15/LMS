@@ -251,7 +251,7 @@ if (isset($_SESSION['employee']) == 'true') {
                 let count = $("input[name='count']").val();
 
                 $.ajax({
-                    url: "clear-session.php", // Replace "update_count.php" with the correct PHP script that returns the count
+                    url: "count-items.php", 
                     method: "POST",
                     data: {
                         count: count

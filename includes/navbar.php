@@ -19,6 +19,7 @@ if (isset($_SESSION['admin']) == 'true') {
 
 	<script type="" src="../js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../fonts/all.css">
+    <script type="" src="../js/jquery.js"></script>
 	<title></title>
 
     <!-- ...existing HTML code... -->
@@ -120,21 +121,7 @@ if (isset($_SESSION['admin']) == 'true') {
 
 </head>
 <body>
-<?php 
-    
-    $currentDate = date('Y-m-d');
-  $item_count = "SELECT COUNT(item) AS item_count FROM orderitems WHERE DATE(order_date) = '$currentDate' ";
-  $count_result = mysqli_query($conn, $item_count);
 
-  if (!$count_result) {
-    // code...
-    echo "error in sql" . mysqli_error($conn);
-  }
-
-  $counts = mysqli_fetch_assoc($count_result);
-
-
- ?>
 
 
 		<nav class="navbar navbar navbar-expand-lg navbar-dark push-nav">
@@ -166,12 +153,15 @@ if (isset($_SESSION['admin']) == 'true') {
                         </ul>
                     </li>
                 </ul>
-                <button type="button" class="btn  position-relative me-5">
+                <a href="add-menu.php">
+                    <button type="button" class="btn  position-relative me-5">
                     <i class="fa-solid fa-cart-shopping text-white"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    <?php echo $counts['item_count']; ?>
+                                    <div class="count"></div>
+                                   
                                 </span>
                                 </button>
+                </a>
                 <form class="d-flex me-4" role="search" >
                     <div class="dropdown"  >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
@@ -299,6 +289,31 @@ if (isset($_SESSION['admin']) == 'true') {
             }) // forEach
         });
         // DOMContentLoaded  end
+
+
+        
+        $(document).ready(function() {
+            function sendCount() {
+                let count = $("input[name='count']").val();
+
+                $.ajax({
+                    url: "../ajax/count-items.php", 
+                    method: "POST",
+                    data: {
+                        count: count
+                    },
+                    success: function(response) {
+                        // Handle the response from the server if needed
+                         $(".count").text(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error updating count:", error);
+                    }
+                });
+            }
+
+            setInterval(sendCount, 100); // Call sendCount() function every 5 seconds (adjust the interval as needed)
+        });
     </script>
 
 <?php } 

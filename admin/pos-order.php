@@ -6,7 +6,7 @@ $sql = 'SELECT * FROM menu';
 $res = mysqli_query($conn, $sql);
 
 if (!$res) {
-    echo "error in sql" . mysqli_error();
+    echo "error in sql" . mysqli_error($conn);
 }
 
  
@@ -49,7 +49,7 @@ if (!$res) {
         }
 
         $.ajax({
-            url: "../ajax/add_menu.php",
+            url: "add-menu.php",
             method: "POST",
             data: { 
                 item: item,
@@ -59,8 +59,7 @@ if (!$res) {
                 customerName: customerName,
                 sex: sex, 
                 paymentMethod: paymentMethod,
-                id: id,
-                express: express
+                id: id
             },
             success: function(data) {
                 $(".item_table").html(data);
@@ -70,28 +69,7 @@ if (!$res) {
     $(".btn-add-item").click(sendFormData);
 });
 
-  $(document).ready(function() {
-    $(".add-initial").click(function() {
-         let initial_payment = $("input[name='initial_payment']").val();
 
-
-
-        $.ajax({
-            url: "../ajax/add_initialPay.php",
-            method: "POST",
-            data: {
-                initial_payment: initial_payment,
-                
-            },
-            success: function(data) {
-                $(".initialpay").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.log("AJAX request error:", status, error);
-            }
-        });
-    });
-});
 
     </script>
 
@@ -198,34 +176,13 @@ if (!$res) {
                 <option value="female">Female</option>
             </select>
         </div>
-        <div class="form-floating d-flex justify-content-end my-3 me-3" id="select">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="express">
-                <option selected class="text-muted" value="0">express</option>
-                <option value="50">50 percent</option>
-                <option value="60">60 percent</option>
-                <option value="70">70 percent</option>
-                <option value="80">80 percent</option>
-                <option value="90">90 percent</option>
-                <option value="100">100 percent</option>
-            </select>
-        </div>
-
-        <div class="d-flex justify-content-end me-5">
-            <button class="btn btn-primary me-2 add-initial" type="button">add</button>
-            <label for="initialpay" style="margin-right: 99px;">
-                initial payment: 
-                <input type="number" name="initial_payment"  style="outline: none;" required>
-                
-            </label>
-        </div>
         
         <div class="ms-5 my-2" style="width:100%; margin-right:20px;">
             <hr class="my-2">
             
         </div>
          <div >
-        <div class="item_table"></div>
-        <div class="initialpay"></div>
+            <small class="text-primary ms-5">remember to click on the cart item on the top right corner when done to view items</small>
         
     </div>
 

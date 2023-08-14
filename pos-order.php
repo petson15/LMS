@@ -6,7 +6,7 @@ $sql = 'SELECT * FROM menu';
 $res = mysqli_query($conn, $sql);
 
 if (!$res) {
-    echo "error in sql" . mysqli_error();
+    echo "error in sql" . mysqli_error($conn);
 }
 
  
