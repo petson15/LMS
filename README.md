@@ -78,3 +78,10 @@ We welcome contributions to enhance the functionality and usability of the Laund
 
 
 ---
+![dashboard](https://github.com/petson15/LMS/assets/82520771/5ca6a45e-8de4-468a-ba6a-c9f3cb983c28)
+![Capture](https://github.com/petson15/LMS/assets/82520771/53e1520e-0ce2-4ef8-8b2c-2aa9f0aee736)
+![pos-](https://github.com/petson15/LMS/assets/82520771/5ef94b34-7785-4529-bf3d-007dc7cb34de)
+![pos](https://github.com/petson15/LMS/assets/82520771/5ea73951-4fee-49a4-b10e-02b45930e4e6)
+![login page](https://github.com/petson15/LMS/assets/82520771/9e56fa58-db2b-4bce-b606-61182c3adfa5)
+
+
